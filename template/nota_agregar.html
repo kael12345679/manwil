@@ -94,15 +94,15 @@
 	</div>
 	<div class="col-md-2 form-group">
 		<label for=notaPedido_subtotal>Subtotal</label><br>
-		<input type="text" class="form-control notaPedido_su" name="notaPedido_subtotal" ng-model='notaPedido_resultado'>
-		<input type="text" class="form-control notaPedido_suEdit" name="notaPedido_subtotal" ng-model='notaPedido_resultadoEdit' ng-init="notaPedido_resultadoEdit = 0">Bs.
+		<input type="text" class="form-control notaPedido_su" name="notaPedido_subtotal" ng-model='notaPedido_resultado' disabled="disabled">
+		<input type="text" class="form-control notaPedido_suEdit" name="notaPedido_subtotal" ng-model='notaPedido_resultadoEdit' ng-init="notaPedido_resultadoEdit = 0" disabled="disabled">Bs.
 	</div>
 	<div class="col-md-1 text-right margin_10 form-group">
 		<button class="btn btn_afirmativo" ng-click="agregarPedidoNota()" title="Pedido en lista"><span class="glyphicon glyphicon-saved"></span></button>
 	</div>
 	<div class="col-md-4 form-group">
 		<label for=notaPedido_Total>Total</label><br>
-		<input type="text" class="total_css form-control notaPedido_to border_1" name="notaPedido_total" ng-model='notaPedido_total'>Bs.
+		<input type="text" class="total_css form-control notaPedido_to border_1" name="notaPedido_total" ng-model='notaPedido_total' disabled="disabled">Bs.
 	</div>
 </div>	
 <div class="col-md-12 border_1_baja margin_top_bottom_10 padding_top_10 pedido_nota_css_2">

@@ -74,7 +74,7 @@
 	<label for=notaPedido_masa>U/M</label><br><input type="text" class="form-control notaPedido_ma" name="notaPedido_masa" ng-model='notaPedido_masa'>
 	</div>
 	<div class="col-md-2 form-group">
-	<label for=notaPedido_cantidad>Pedido</label><br><input type="text" class="form-control notaPedido_ca" name="notaPedido_cantidad" ng-model='notaPedido_cantidad' ng-keyup="escribePrecio()" ng-init="notaPedido_cantidad = 0">
+	<label for=notaPedido_cantidad>Pedido</label><br><input type="text" class="form-control notaPedido_ca" name="notaPedido_cantidad" ng-model='notaPedido_cantidad' ng-keyup="escribePrecio()">
 	</div>
 	<div class="col-md-2 form-group">
 	<label for=notaPedido_entregado>Entregado</label><br><input type="text" class="form-control notaPedido_en" name="notaPedido_entregado" ng-model='notaPedido_entregado'>
@@ -90,15 +90,15 @@
 	</div>
 	<div class="col-md-2 form-group">
 		<label for=notaPedido_subtotal>Subtotal</label><br>
-		<input type="text" class="form-control notaPedido_su" name="notaPedido_subtotal" ng-model='notaPedido_resultado'>
-		<input type="text" class="form-control notaPedido_suEdit" name="notaPedido_subtotal" ng-model='notaPedido_resultadoEdit' ng-init="notaPedido_resultadoEdit = 0">Bs.
+		<input type="text" class="form-control notaPedido_su" name="notaPedido_subtotal" ng-model='notaPedido_resultado' disabled="disabled">
+		<input type="text" class="form-control notaPedido_suEdit" name="notaPedido_subtotal" ng-model='notaPedido_resultadoEdit' ng-init="notaPedido_resultadoEdit = 0" disabled="disabled">Bs.
 	</div>
 	<div class="col-md-1 margin_10 text-right form-group">
 		<button class="btn btn_afirmativo" ng-click="agregarPedidoNota()" title="Pedido en lista"><span class="glyphicon glyphicon-saved"></span></button>
 	</div>
 	<div class="col-md-4 form-group">
 		<label for=notaPedido_Total>Total</label><br>
-		<input type="text" name="" class="form-control notaPedido_to border_1" name="notaPedido_total" ng-model='notaPedido_total'>Bs.
+		<input type="text" name="" class="form-control notaPedido_to border_1" name="notaPedido_total" ng-model='notaPedido_total' disabled="disabled">Bs.
 	</div>
 </div>	
 <div class="col-md-12 border_1_baja margin_top_bottom_10 padding_top_10">

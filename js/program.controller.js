@@ -1774,8 +1774,8 @@ app.controller("notaListarCtrl", function($scope, $http) {
 ////AGREGAR
 app.controller("notaAgregarCtrl", function($scope, $http) {
     ////carga de cliente para llenar nota
-    $scope.notaPedido_cantidad = 0;
-    $scope.notaPedido_precioEdit = 0;
+    $scope.notaPedido_cantidad = "";
+    $scope.notaPedido_precioEdit = "";
     $scope.notaPedido_resultado = 0;
     $scope.notaPedido_total = 0;
     $scope.notaPedido_entregado = 0; 
@@ -2202,8 +2202,8 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                     //console.log('Petición realizada');
                         $(".notaPedido_en").val("0");
                         //$(".notaPedido_ma").val("");
-                        $(".notaPedido_ca").val("0");
-                        $(".notaPedido_pr").val("0");
+                        $(".notaPedido_ca").val("");
+                        $(".notaPedido_pr").val("");
                         $(".notaPedido_su").val("0");
                         $(".notaPedido_suEdit").val("0");
                     }
@@ -2252,8 +2252,8 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                 //location.reload(); 
                 $(".notaPedido_en").val("0");
                 //$(".notaPedido_ma").val("");
-                $(".notaPedido_ca").val("0");
-                $(".notaPedido_pr").val("0");
+                $(".notaPedido_ca").val("");
+                $(".notaPedido_pr").val("");
                 $(".notaPedido_su").val("0");
                 $(".notaPedido_suEdit").val("0");
             }
@@ -2398,8 +2398,8 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
 ////MODIFICAR
 app.controller("notaModificarCtrl", function($scope, $http) {
 ////declarar valores por defecto
-    $scope.notaPedido_cantidad = 0;
-    $scope.notaPedido_precioEdit = 0;
+    $scope.notaPedido_cantidad = "";
+    $scope.notaPedido_precioEdit = "";
     $scope.notaPedido_resultado = 0;
     $scope.notaPedido_total = 0;
     $scope.notaPedido_entregado = 0; 
@@ -2721,8 +2721,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         //console.log('Petición realizada');
             $(".notaPedido_en").val("0");
             //$(".notaPedido_ma").val("");
-            $(".notaPedido_ca").val("0");
-            $(".notaPedido_pr").val("0");
+            $(".notaPedido_ca").val("");
+            $(".notaPedido_pr").val("");
             $(".notaPedido_su").val("0");
             $(".notaPedido_suEdit").val("0");
         }
@@ -2997,8 +2997,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                     //console.log('Petición realizada');
                         $(".notaPedido_en").val("0");
                         //$(".notaPedido_ma").val("");
-                        $(".notaPedido_ca").val("0");
-                        $(".notaPedido_pr").val("0");
+                        $(".notaPedido_ca").val("");
+                        $(".notaPedido_pr").val("");
                         $(".notaPedido_su").val("0");
                         $(".notaPedido_suEdit").val("0");
                     }
@@ -3047,8 +3047,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 //location.reload(); 
                 $(".notaPedido_en").val("0");
                 //$(".notaPedido_ma").val("");
-                $(".notaPedido_ca").val("0");
-                $(".notaPedido_pr").val("0");
+                $(".notaPedido_ca").val("");
+                $(".notaPedido_pr").val("");
                 $(".notaPedido_su").val("0");
                 $(".notaPedido_suEdit").val("0");
             }

@@ -70,27 +70,7 @@ imprimir_nota.controller('Ctrl',function($scope, $http){
             //$scope.nota_total = "25.5";
             $scope.$apply();
             //console.log($scope.nota_fecha);
-        },
- 
-        // código a ejecutar si la petición falla;
-        // son pasados como argumentos a la función
-        // el objeto de la petición en crudo y código de estatus de la petición
-        error : function(xhr, status) {
-            console.log('Disculpe, existió un problema');
-        },
- 
-        // código a ejecutar sin importar si la petición falló o no
-        complete : function(xhr, status) {
-            //console.log('Petición realizada');
-            //location.href='#/usuario_listar';
-            //var meses = new Array ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-            //var f=new Date();
-            //document.write(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());   
-            //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
-        }
-    });
-
-    ///-----------------------------------------------------------------
+            ///-----------------------------------------------------------------
     //////////////////////////////////////////////////////////////////////
     ///*****ajax para llenar pedidos
     $.ajax({
@@ -112,22 +92,22 @@ imprimir_nota.controller('Ctrl',function($scope, $http){
         // código a ejecutar si la petición es satisfactoria;
         // la respuesta es pasada como argumento a la función
         success : function(dato) {
-        	$scope.items = dato.length;
+            $scope.items = dato.length;
 
-        	//cortar las notas segun el numero de notas a imprimir
-        	/*if ($scope.numero_n <= $scope.numero_N) {
-				$scope.numero_NOTAS = ($scope.numero_N / $scope.numero_n);
-				$scope.nota_numeroNotaTotal = $scope.numero_NOTAS;
+            //cortar las notas segun el numero de notas a imprimir
+            /*if ($scope.numero_n <= $scope.numero_N) {
+                $scope.numero_NOTAS = ($scope.numero_N / $scope.numero_n);
+                $scope.nota_numeroNotaTotal = $scope.numero_NOTAS;
 
-			}else{
-				$scope.formNotaPedido = dato;	
-				$scope.nota_numeroNota = 1;
-				$scope.nota_numeroNotaTotal = 1;
-			};*/  //por desarrollar lo de corta notas
+            }else{
+                $scope.formNotaPedido = dato;   
+                $scope.nota_numeroNota = 1;
+                $scope.nota_numeroNotaTotal = 1;
+            };*/  //por desarrollar lo de corta notas
 
-			$scope.nota_numeroNota = 1;
-			$scope.nota_numeroNotaTotal = 1;
-			$scope.formNotaPedido = dato;
+            $scope.nota_numeroNota = 1;
+            $scope.nota_numeroNotaTotal = 1;
+            $scope.formNotaPedido = dato;
             $scope.masa = dato[0].masa;
 
             //var numera = "25.9";
@@ -136,28 +116,30 @@ imprimir_nota.controller('Ctrl',function($scope, $http){
 
             var res2 = dato[0].total.toString().split('.');
             //var res2 = numera.toString().split('.');
-  			//console.log(res2);
-			var val1 = res2[0] * 1;
-			var val2 = res2[1] * 1;
-			if (isNaN(val2)) { 
-				$(".n_son").append('<strong class="sub_remove">'+Millones(val1)+' CON '+'00/100 BOLIVIANOS</strong>');
-				
-			}else{
-				
-				$(".n_son").append('<strong class="sub_remove">'+Millones(val1)+' CON '+val2+'0/100 BOLIVIANOS</strong>');
-				
-			};
+            //console.log(res2);
+            var val1 = res2[0] * 1;
+            var val2 = res2[1] * 1;
+            if (isNaN(val2)) { 
+                $(".n_son").append('<strong class="sub_remove">'+Millones(val1)+' CON '+'00/100 BOLIVIANOS</strong>');
+                
+            }else{
+                
+                $(".n_son").append('<strong class="sub_remove">'+Millones(val1)+' CON '+val2+'0/100 BOLIVIANOS</strong>');
+                
+            };
 
-			for (var i = 0; i < dato.length; i++) {
-				$scope.cantidad =  ($scope.cantidad * 1) + (dato[i].cantidad * 1);
-			}
-			///------divide facturas
-			$scope.numero_N = $scope.items;
+            for (var i = 0; i < dato.length; i++) {
+                $scope.cantidad =  ($scope.cantidad * 1) + (dato[i].cantidad * 1);
+            }
+            ///------divide facturas
+            $scope.numero_N = $scope.items;
 
 
             $scope.$apply();
+            /*verifica las salidas*/
             window.print();
             window.history.back();
+
         },
  
         // código a ejecutar si la petición falla;
@@ -173,11 +155,31 @@ imprimir_nota.controller('Ctrl',function($scope, $http){
         }
     });
     /////////////////////////////////////////////////////////////////////
+        },
+ 
+        // código a ejecutar si la petición falla;
+        // son pasados como argumentos a la función
+        // el objeto de la petición en crudo y código de estatus de la petición
+        error : function(xhr, status) {
+            console.log('Disculpe, existió un problema');
+        },
+ 
+        // código a ejecutar sin importar si la petición falló o no
+        complete : function(xhr, status) {
+            //console.log('Petición realizada');
+            //location.href='#/usuario_listar';
+            //var meses = new Array ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+            //var f=new Date();
+            //document.write(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());   
+            //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
+        }
+    });
+
+    
 
 
 
-
-
+    
 
 
 
