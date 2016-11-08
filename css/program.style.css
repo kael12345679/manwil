@@ -270,3 +270,6 @@ input[type="checkbox"], input[type="radio"]{
 .oculta_reporte_vendedor{
 	display: none;
 }
+.notaPedido_caSi{
+	display: none;
+}

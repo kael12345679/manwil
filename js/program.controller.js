@@ -29,46 +29,48 @@ app.controller("productoCtrl", function($scope, $http, $location) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        $(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
                 //////////////////////////////////////////////////////////////////////
                 $.ajax({
-    // la URL para la petición
-    url : 'php/producto.listar.php',
+                // la URL para la petición
+                url : 'php/producto.listar.php',
  
-    // la información a enviar
-    // (también es posible utilizar una cadena de datos)
-    data : { id : 123 },
+                // la información a enviar
+                // (también es posible utilizar una cadena de datos)
+                data : { id : 123 },
  
-    // especifica si será una petición POST o GET
-    type : 'POST',
+                // especifica si será una petición POST o GET
+                type : 'POST',
  
-    // el tipo de información que se espera de respuesta
-    dataType : 'json',
+                // el tipo de información que se espera de respuesta
+                dataType : 'json',
  
-    // código a ejecutar si la petición es satisfactoria;
-    // la respuesta es pasada como argumento a la función
-    success : function(largeLoad) {
-        data = largeLoad.filter(function(item) {
+                // código a ejecutar si la petición es satisfactoria;
+                // la respuesta es pasada como argumento a la función
+                success : function(largeLoad) {
+                data = largeLoad.filter(function(item) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
-    },
+                    $(".carga-info").css("display", "none");
+                },
  
-    // código a ejecutar si la petición falla;
-    // son pasados como argumentos a la función
-    // el objeto de la petición en crudo y código de estatus de la petición
-    error : function(xhr, status) {
-        console.log('Disculpe, existió un problema');
-    },
+                // código a ejecutar si la petición falla;
+                // son pasados como argumentos a la función
+                // el objeto de la petición en crudo y código de estatus de la petición
+                error : function(xhr, status) {
+                    console.log('Disculpe, existió un problema');
+                },  
  
-    // código a ejecutar sin importar si la petición falló o no
-    complete : function(xhr, status) {
-        //console.log('Petición realizada');
-    }
-});
+                // código a ejecutar sin importar si la petición falló o no
+                complete : function(xhr, status) {
+                    //console.log('Petición realizada');
+                }
+            });
 
                 /////////////////////////////////////////////////////////////////////
 
@@ -81,6 +83,7 @@ app.controller("productoCtrl", function($scope, $http, $location) {
             } else {
                 $http.post('php/producto.listar.php').success(function (largeLoad) {
                     $scope.setPagingData(largeLoad,page,pageSize);
+                    $(".carga-info").css("display", "none");
                 });
             }
         }, 100);
@@ -142,6 +145,7 @@ app.controller("productoCtrl", function($scope, $http, $location) {
     $scope.producto_eliminar_modal = function(data) {
         $('#myModal').modal('hide');
         var id_borra = localStorage.getItem("id_borrar");
+        //$(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -160,7 +164,8 @@ app.controller("productoCtrl", function($scope, $http, $location) {
             // código a ejecutar si la petición es satisfactoria;
             // la respuesta es pasada como argumento a la función
             success : function(data) {
-                
+                //$scope.$apply();
+                //$(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -248,7 +253,7 @@ app.controller("productoModificarCtrl", function($scope, $http) {
 
 
     $scope.producto_codigo = localStorage.getItem("id_modifica");
-
+    $(".carga-info").css("display", "block");
     $.ajax({
             // la URL para la petición
             url : 'php/producto.listar.uno.php',
@@ -284,6 +289,7 @@ app.controller("productoModificarCtrl", function($scope, $http) {
                 $scope.producto_precioFabrica = data[0].precio_fabrica;
                 $scope.producto_observacion = data[0].observacion;
                 $scope.precio_megas = data[0].precio_megas;
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -383,46 +389,48 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        $(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
                 //////////////////////////////////////////////////////////////////////
                 $.ajax({
-    // la URL para la petición
-    url : 'php/cliente.listar.php',
+                // la URL para la petición
+                url : 'php/cliente.listar.php',
  
-    // la información a enviar
-    // (también es posible utilizar una cadena de datos)
-    data : { id : 123 },
+                // la información a enviar
+                // (también es posible utilizar una cadena de datos)
+                data : { id : 123 },
  
-    // especifica si será una petición POST o GET
-    type : 'POST',
+                // especifica si será una petición POST o GET
+                type : 'POST',
  
-    // el tipo de información que se espera de respuesta
-    dataType : 'json',
+                // el tipo de información que se espera de respuesta
+                dataType : 'json',
  
-    // código a ejecutar si la petición es satisfactoria;
-    // la respuesta es pasada como argumento a la función
-    success : function(largeLoad) {
-        data = largeLoad.filter(function(item) {
+                // código a ejecutar si la petición es satisfactoria;
+                // la respuesta es pasada como argumento a la función
+                success : function(largeLoad) {
+                data = largeLoad.filter(function(item) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
-    },
+                    $(".carga-info").css("display", "none");
+                },
  
-    // código a ejecutar si la petición falla;
-    // son pasados como argumentos a la función
-    // el objeto de la petición en crudo y código de estatus de la petición
-    error : function(xhr, status) {
-        console.log('Disculpe, existió un problema');
-    },
+                // código a ejecutar si la petición falla;
+                // son pasados como argumentos a la función
+                // el objeto de la petición en crudo y código de estatus de la petición
+                error : function(xhr, status) {
+                    console.log('Disculpe, existió un problema');
+                },
  
-    // código a ejecutar sin importar si la petición falló o no
-    complete : function(xhr, status) {
-        //console.log('Petición realizada');
-    }
-});
+                // código a ejecutar sin importar si la petición falló o no
+                complete : function(xhr, status) {
+                    //console.log('Petición realizada');
+                }
+            });
 
 /////////////////////////////////////////////////////////////////////
               //$http.post('../php/producto.listar.php').success(function (largeLoad) {      
@@ -434,6 +442,7 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
             } else {
                 $http.post('php/cliente.listar.php').success(function (largeLoad) {
                     $scope.setPagingData(largeLoad,page,pageSize);
+                    $(".carga-info").css("display", "none");
                 });
             }
         }, 100);
@@ -496,6 +505,7 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
     $scope.cliente_eliminar_modal = function(data) {
         $('#myModal').modal('hide');
         var id_borra = localStorage.getItem("id_borrar");
+        //$(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -514,7 +524,8 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
             // código a ejecutar si la petición es satisfactoria;
             // la respuesta es pasada como argumento a la función
             success : function(data) {
-                
+                //$scope.$apply();
+                //$(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -550,6 +561,7 @@ app.controller("clienteAgregarCtrl", function($scope, $http) {
     $scope.cliente_nombreEmpleado = "";
 
 
+    $(".carga-info").css("display", "block");
     //**-----------llenar vendedores a cliente
     ////carga de vendedor para llenar nota
     $.ajax({
@@ -581,6 +593,8 @@ app.controller("clienteAgregarCtrl", function($scope, $http) {
                         $scope.selectedVendedor = dataUser[i];
                     };
                 };*/
+                $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -666,7 +680,7 @@ app.controller("clienteModificarCtrl", function($scope, $http) {
 
 
     $scope.cliente_codigo = localStorage.getItem("id_modifica");
-
+    $(".carga-info").css("display", "block");
     $.ajax({
             // la URL para la petición
             url : 'php/cliente.listar.uno.php',
@@ -708,6 +722,59 @@ app.controller("clienteModificarCtrl", function($scope, $http) {
                 $scope.cliente_razonSocial = data[0].razon_social;
                 $scope.cliente_id_empleado = data[0].id_empleado;
                 $scope.cliente_nombreEmpleado = data[0].nombre_empleado;
+
+                /********/
+                //**-----------llenar vendedores a cliente
+                ////carga de vendedor para llenar nota
+                $.ajax({
+                        // la URL para la petición
+                        url : 'php/cliente.vendedor.listar.php',
+ 
+                        // la información a enviar
+                        // (también es posible utilizar una cadena de datos)
+                        data : { 
+                            cargo: "Vendedor"
+                        },
+ 
+                        // especifica si será una petición POST o GET
+                        type : 'POST',
+ 
+                        // el tipo de información que se espera de respuesta
+                        dataType : 'json',
+ 
+                        // código a ejecutar si la petición es satisfactoria;
+                        // la respuesta es pasada como argumento a la función
+                        success : function(dataUser) {
+                            //console.log(dataUser);
+                            $scope.datacv = {
+                                    availableOptionsClienteVendedor: dataUser
+                            };
+                            //$scope.selectedClienteVendedor = dataUser[0];
+                            for(i=0; i<dataUser.length;i++){
+                                if ( dataUser[i].id_empleado == $scope.cliente_id_empleado) {
+                                    $scope.selectedClienteVendedor = dataUser[i];
+                                };
+                            };
+                            $scope.$apply();
+                            $(".carga-info").css("display", "none");
+
+                        },
+ 
+                        // código a ejecutar si la petición falla;
+                        // son pasados como argumentos a la función
+                        // el objeto de la petición en crudo y código de estatus de la petición
+                        error : function(xhr, status) {
+                            console.log('Disculpe, existió un problema');
+                        },
+ 
+                            // código a ejecutar sin importar si la petición falló o no
+                        complete : function(xhr, status) {
+                            //console.log('Petición realizada');
+                        //location.href='#/usuario_listar';
+                        }
+                    });
+
+            /************************/
             },
  
             // código a ejecutar si la petición falla;
@@ -724,55 +791,7 @@ app.controller("clienteModificarCtrl", function($scope, $http) {
             }
         });
 
-    //**-----------llenar vendedores a cliente
-    ////carga de vendedor para llenar nota
-    $.ajax({
-            // la URL para la petición
-            url : 'php/cliente.vendedor.listar.php',
- 
-            // la información a enviar
-            // (también es posible utilizar una cadena de datos)
-            data : { 
-                cargo: "Vendedor"
-            },
- 
-            // especifica si será una petición POST o GET
-            type : 'POST',
- 
-            // el tipo de información que se espera de respuesta
-            dataType : 'json',
- 
-            // código a ejecutar si la petición es satisfactoria;
-            // la respuesta es pasada como argumento a la función
-            success : function(dataUser) {
-                //console.log(dataUser);
-                $scope.datacv = {
-                        availableOptionsClienteVendedor: dataUser
-                };
-                //$scope.selectedClienteVendedor = dataUser[0];
-                for(i=0; i<dataUser.length;i++){
-                    if ( dataUser[i].id_empleado == $scope.cliente_id_empleado) {
-                        $scope.selectedClienteVendedor = dataUser[i];
-                    };
-                };
-                $scope.$apply();
-
-            },
- 
-            // código a ejecutar si la petición falla;
-            // son pasados como argumentos a la función
-            // el objeto de la petición en crudo y código de estatus de la petición
-            error : function(xhr, status) {
-                console.log('Disculpe, existió un problema');
-            },
- 
-                // código a ejecutar sin importar si la petición falló o no
-            complete : function(xhr, status) {
-                //console.log('Petición realizada');
-               //location.href='#/usuario_listar';
-            }
-        });
-
+    
     //**-------funcion para anadir los vendedores a la tabla cliente
     $scope.hasChangedClienteVendedor = function() {
         $scope.cliente_id_empleado = $scope.selectedClienteVendedor.id_empleado;
@@ -867,6 +886,7 @@ app.controller("empleadoListarCtrl", function($scope, $http) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        $(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -893,6 +913,7 @@ app.controller("empleadoListarCtrl", function($scope, $http) {
                             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                         });
                     $scope.setPagingData(data,page,pageSize);
+                    $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -919,6 +940,7 @@ app.controller("empleadoListarCtrl", function($scope, $http) {
             } else {
                 $http.post('php/empleado.listar.php').success(function (largeLoad) {
                     $scope.setPagingData(largeLoad,page,pageSize);
+                    $(".carga-info").css("display", "none");
                 });
             }
         }, 100);
@@ -987,6 +1009,7 @@ app.controller("empleadoListarCtrl", function($scope, $http) {
     $scope.empleado_eliminar_modal = function() {
         $('#myModal').modal('hide');
         var id_borra = localStorage.getItem("id_borrar");
+        //$(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -1005,7 +1028,8 @@ app.controller("empleadoListarCtrl", function($scope, $http) {
             // código a ejecutar si la petición es satisfactoria;
             // la respuesta es pasada como argumento a la función
             success : function(data) {
-                
+                //$scope.$apply();
+                //$(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -1078,7 +1102,7 @@ app.controller("empleadoModificarCtrl", function($scope, $http) {
     $scope.formData = {};
     $scope.formDataSend = {};
     $scope.empleado_codigo = localStorage.getItem("id_modifica");
-
+    $(".carga-info").css("display", "block");
     $.ajax({
             // la URL para la petición
             url : 'php/empleado.listar.uno.php',
@@ -1131,6 +1155,7 @@ app.controller("empleadoModificarCtrl", function($scope, $http) {
                 //$scope.formData2.empleado_observacion = data[0].observacion;
                 //$scope.formData2.empleado_sexo = data[0].sexo;
                 //$scope.formData2.empleado_direccion = data[0].direccion;
+                $(".carga-info").css("display", "none");
 
             },
  
@@ -1237,6 +1262,7 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        $(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -1263,6 +1289,7 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
                             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                         });
                     $scope.setPagingData(data,page,pageSize);
+                    $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -1289,6 +1316,7 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
             } else {
                 $http.post('php/usuario.listar.php').success(function (largeLoad) {
                     $scope.setPagingData(largeLoad,page,pageSize);
+                    $(".carga-info").css("display", "none");
                 });
             }
         }, 100);
@@ -1365,7 +1393,8 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
             // código a ejecutar si la petición es satisfactoria;
             // la respuesta es pasada como argumento a la función
             success : function(data) {
-                
+                //$scope.$apply();
+                //$(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -1386,6 +1415,7 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
 });
 app.controller("usuarioAgregarCtrl", function($scope, $http) {
 
+    $(".carga-info").css("display", "block");
     ////carga de empleados para llenar usuario
     $.ajax({
             // la URL para la petición
@@ -1411,6 +1441,9 @@ app.controller("usuarioAgregarCtrl", function($scope, $http) {
                         availableOptions: dataUser,
                         selectedOption: {id_empleado: '106', nombre: 'ivan pro' , ci: '888862 LP'} //This sets the default value of the select in the ui
                     };
+
+                $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -1477,6 +1510,7 @@ app.controller("usuarioModificarCtrl", function($scope, $http) {
     $scope.formDataSend = {};
     $scope.usuario_codigo = localStorage.getItem("id_modifica");
 
+    $(".carga-info").css("display", "block");
     $.ajax({
             // la URL para la petición
             url : 'php/usuario.listar.uno.php',
@@ -1513,6 +1547,8 @@ app.controller("usuarioModificarCtrl", function($scope, $http) {
                 
                 $scope.formDataSend.id_empleado = data[0].id_empleado;
                 $scope.formDataSend.id_usuario = data[0].id_usuario;
+                $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -1612,6 +1648,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        $(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -1638,6 +1675,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
                             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                         });
                     $scope.setPagingData(data,page,pageSize);
+                    $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -1664,6 +1702,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
             } else {
                 $http.post('php/nota.listar.php').success(function (largeLoad) {
                     $scope.setPagingData(largeLoad,page,pageSize);
+                    $(".carga-info").css("display", "none");
                 });
             }
         }, 100);
@@ -1726,6 +1765,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
     $scope.nota_eliminar_modal = function() {
         $('#myModal').modal('hide');
         var id_borra = localStorage.getItem("id_borrar");
+        //$(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -1744,7 +1784,8 @@ app.controller("notaListarCtrl", function($scope, $http) {
             // código a ejecutar si la petición es satisfactoria;
             // la respuesta es pasada como argumento a la función
             success : function(data) {
-                
+                //$scope.$apply();
+                //$(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -1782,11 +1823,13 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
     $scope.notaPedidoForm= {};
     $scope.formDataNota= {};
     $scope.checkboxModelBaja = [{valor:"CANCELADO"},{valor:"DEBE"}];
+    $scope.checkboxModel = [{value2: "si"},{value2: "no"}];
     
 
 
     $scope.dataF = [{valor: "contado",nombre: "CONTADO"},{valor: "credito",nombre: "CREDITO" }];
     $scope.selectedFormaPago = $scope.dataF;            
+
 
     ////carga de vendedor para llenar nota
     $.ajax({
@@ -1935,13 +1978,15 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
 
     ////agregar pedido checkbox
     $scope.editarPrecio = function(){
-        if($scope.checkboxModel.value2 == "si"){//esta marcado
+         if($scope.checkboxModel.value2 == "si"){//esta marcado
            //posibilita editar
            $(".notaPedido_pr").css("display","block");
            $(".np_precioS").css("display","none");
 
            $(".notaPedido_su").css("display","none");
            $(".notaPedido_suEdit").css("display","block");
+           $(".notaPedido_caSi").css("display","block");
+           $(".notaPedido_caNo").css("display","none");
        };
        if($scope.checkboxModel.value2 == "no"){//no esta marcado
            //posibilita editar
@@ -1950,6 +1995,8 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
 
            $(".notaPedido_su").css("display","block");
            $(".notaPedido_suEdit").css("display","none");
+           $(".notaPedido_caSi").css("display","none");
+           $(".notaPedido_caNo").css("display","block");
        };
     };
 
@@ -1989,7 +2036,8 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
     };
     //********select escoger Cliente
     $scope.hasChangedCliente = function() {
-        //console.log($scope.selectedCliente.nombre);
+        console.log($scope.selectedCliente.nombre);
+        console.log($scope.selectedCliente.nombre_real +" nombre real");
         $scope.formDataNota.cliente = $scope.selectedCliente.nombre_real;
         $scope.formDataNota.empresa = $scope.selectedCliente.nombre_empresa;
         $scope.formDataNota.id_cliente = $scope.selectedCliente.id_cliente;
@@ -2004,6 +2052,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
     };*/
     //********select escoger Vendedor
     $scope.hasChangedVendedor = function() {
+        $(".carga-info").css("display", "block");
         //console.log($scope.selectedVendedor.nombre);
         $scope.formDataNota.vendedor = $scope.selectedVendedor.nombre;
         $scope.formDataNota.id_empleado = $scope.selectedVendedor.id_empleado;
@@ -2039,7 +2088,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                             };
                         };*/
                         $scope.$apply();
-                
+                        $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -2075,6 +2124,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
         //$(".pedido_nota_css").css("display", "block");
 
         //**********enviar para agregar*****/
+        $(".carga-info").css("display", "block");
         ////
         $.ajax({
             // la URL para la petición
@@ -2100,7 +2150,9 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                 //},3000);
                 $(".n_numero").val(dataUser[0].id_nota);
                 $(".pedido_nota_css").css("display", "block");
-                $(".btn_desaparece").css("display", "none")            
+                $(".btn_desaparece").css("display", "none");
+                $scope.$apply();
+                $(".carga-info").css("display", "none");           
             },
  
             // código a ejecutar si la petición falla;
@@ -2143,24 +2195,36 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
         $scope.notaPedidoForm.notaPedido_descripcion = $scope.selectedPrecio.nombre;
     };
     $scope.hasChangedPrecioSelect = function(){
-        $scope.notaPedido_resultado = $scope.notaPedido_cantidad * $scope.selectedPrecioSelect.id;
+        $scope.notaPedido_resultado = $scope.notaPedido_cantidadNo * $scope.selectedPrecioSelect.id;
         $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultado;
-        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidad;
+        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadNo;
         $scope.notaPedidoForm.notaPedido_precio = $scope.selectedPrecioSelect.id;
     };
-    $scope.escribePrecio = function(){
-        $scope.notaPedido_resultadoEdit = $scope.notaPedido_cantidad * $scope.notaPedido_precioEdit;
+    /**funcion para responder cuando NO se marco editar precio**/
+    $scope.escribePrecioNo = function(){
+        $scope.notaPedido_resultado = $scope.notaPedido_cantidadNo * $scope.selectedPrecioSelect.id;
+        $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultado;
+        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadNo;
+        $scope.notaPedidoForm.notaPedido_precio = $scope.selectedPrecioSelect.id;
+        $scope.notaPedidoForm.notaPedido_entregado = $scope.notaPedido_cantidadNo;
+    };
+    /**funcion para responder cuando SI se marco editar precio**/
+    $scope.escribePrecioSi = function(){
+        $scope.notaPedido_resultadoEdit = $scope.notaPedido_cantidadSi * $scope.notaPedido_precioEdit;
         $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultadoEdit;
-        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidad;
+        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadSi;
         $scope.notaPedidoForm.notaPedido_precio = $scope.notaPedido_precioEdit;
-
-        $scope.notaPedido_entregado = $scope.notaPedido_cantidad;
+        $scope.notaPedidoForm.notaPedido_entregado = $scope.notaPedido_cantidadSi;
     };
     $scope.agregarPedidoNota = function(){
         $scope.notaPedidoForm.id_nota = $(".n_numero").val();
         $scope.notaPedidoForm.notaPedido_masa = $(".notaPedido_ma").val();
-        $scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_en").val();
-        //////////////////////////////////////////////////////////////////////
+        //$scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_en").val();
+        //$scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_ca").val();
+
+        if ($(".notaPedido_suEdit").val() != "0"  || $(".notaPedido_su").val() != "0") {
+                $(".carga-info").css("display", "block");
+                //////////////////////////////////////////////////////////////////////
                 $.ajax({
                     // la URL para la petición
                     url : 'php/nota.pedido.agregar.php',
@@ -2180,14 +2244,18 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                     success : function(dato) {
                         $scope.datoNotaPedidos = dato;
                         $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);
-                        $(".pedido_nota_css_2").css("display", "block");
                         $scope.checkboxModel.value2 = "no";
                         $(".notaPedido_pr").css("display","none");
                         $(".np_precioS").css("display","block");
-
+                        $(".pedido_nota_css_2").css("display","block");
                         $(".notaPedido_su").css("display","block");
-                        $(".notaPedido_suEdit").css("display","none");   
+                        $(".notaPedido_suEdit").css("display","none");
+                        /****carga todo por defecto vacio****/   
+                        $scope.notaPedido_cantidadNo = "";
+                        $scope.notaPedido_cantidadSi = "";
+                        $scope.notaPedido_precioEdit = "";
                         $scope.$apply();
+                        $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -2202,13 +2270,20 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                     //console.log('Petición realizada');
                         $(".notaPedido_en").val("0");
                         //$(".notaPedido_ma").val("");
-                        $(".notaPedido_ca").val("");
+                        $(".notaPedido_caSi").val("");
+                        $(".notaPedido_caNo").val("");
                         $(".notaPedido_pr").val("");
                         $(".notaPedido_su").val("0");
                         $(".notaPedido_suEdit").val("0");
+                        $(".notaPedido_caSi").css("display","none");
+                        $(".notaPedido_caNo").css("display","block");
                     }
                 });
                 /////////////////////////////////////////////////////////////////////
+        }else{
+            $("#myModalProgramError").modal("show");
+        }
+
     };
 
     //********eliminar pedido***************
@@ -2216,6 +2291,8 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
         console.log(a);
         var idNota = $(".n_numero").val();
         var id_borra = a;
+
+        $(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -2237,6 +2314,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                 $scope.datoNotaPedidos = dato;
                 $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);  
                 $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -2280,6 +2358,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
         console.log(clienteVector[1]);
         console.log(id_vendedor);
 
+        $(".carga-info").css("display", "block");
         //---ajax para llenar cliente
         //////////////////////////////////////////////////////////////////////
         $.ajax({
@@ -2306,8 +2385,63 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                 $scope.checkboxModelCliente.value = "no";
                 $(".n_cliente").css("display","block");
                 $(".crea_cliente").css("display","none");
-                $scope.$apply();
                 console.log("aplico cambio");
+                $(".carga-info").css("display", "none");
+                //$scope.$apply();
+
+
+                /****nueva consulta de cliente****/
+                //****-------ajax pra llenar cliente ///ajax para llenar el formulario de modificar nota
+                $.ajax({
+                    // la URL para la petición
+                    url : 'php/cliente.listar.nota.php',
+ 
+                    // la información a enviar
+                    // (también es posible utilizar una cadena de datos)
+                    data : { 
+                        id_empleado: id_vendedor
+                    },
+ 
+                    // especifica si será una petición POST o GET
+                    type : 'POST',
+ 
+                    // el tipo de información que se espera de respuesta
+                    dataType : 'json',
+ 
+                    // código a ejecutar si la petición es satisfactoria;
+                    // la respuesta es pasada como argumento a la función
+                    success : function(dataUser) {
+                        //console.log(dataUser);
+                        $scope.datac = {
+                            availableOptionsCliente: dataUser
+                        };
+                        $scope.selectedCliente = dataUser;
+                        /*for(i=0; i<dataUser.length;i++){
+                            if ( dataUser[i].id_cliente == $scope.formDataNotaModificar.id_cliente) {
+                                $scope.selectedCliente = dataUser[i];
+                            };
+                        };*/
+                        $scope.$apply();
+                        $(".carga-info").css("display", "none");
+                    },
+ 
+                    // código a ejecutar si la petición falla;
+                    // son pasados como argumentos a la función
+                    // el objeto de la petición en crudo y código de estatus de la petición
+                    error : function(xhr, status) {
+                        console.log('Disculpe, existió un problema');
+                    },
+ 
+                    // código a ejecutar sin importar si la petición falló o no
+                    complete : function(xhr, status) {
+                        //console.log('Petición realizada');
+                        //location.href='#/usuario_listar';
+                        //var meses = new Array ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+                        //var f=new Date();
+                        //document.write(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());   
+                        //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
+                    }
+                });//fin de ajax para llenar cliente
             },
  
             // código a ejecutar si la petición falla;
@@ -2349,7 +2483,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
         //$scope.formDataNota.tc = $(".nota_cam").val();
         //$scope.formDataNota.deposito = $(".n_deposito").val();
 
-
+        $(".carga-info").css("display", "block");
         //**********enviar para agregar*****/
         ////
         $.ajax({
@@ -2375,7 +2509,8 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                 //$(".boton_cambio").removeClass("btn_super");
                 $(".boton_cambio").removeClass("btn_super");
                 $(".boton_cambio").addClass("btn_agregar_positivo");
-
+                $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -2409,12 +2544,13 @@ app.controller("notaModificarCtrl", function($scope, $http) {
     $scope.formDataNota.baja = "DEBE";
     $scope.dataF = [{valor: "contado",nombre: "CONTADO"},{valor: "credito",nombre: "CREDITO" }];
     $scope.checkboxModelBaja = [{valor:"CANCELADO"},{valor:"DEBE"}];
+    $scope.checkboxModel = [{value2: "si"},{value2: "no"}];
                 
 
     ////cargar el formulario de modificar nota CON ID_NOTA
     $scope.formDataNotaModificar.id_nota = localStorage.getItem("id_modifica");
     
-
+    $(".carga-info").css("display", "block");
     //ajax para llenar num nota fecha deposito  vendedor autorizado cliente de nota
     $.ajax({
             // la URL para la petición
@@ -2475,6 +2611,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 $scope.formDataNota.cliente = dataUser[0].cliente;
                 $scope.formDataNota.empresa = dataUser[0].empresa;
                 $scope.formDataNota.vendedor = dataUser[0].vendedor;
+                $(".carga-info").css("display", "none");
 
                 //****-------ajax pra llenar cliente ///ajax para llenar el formulario de modificar nota
                 $.ajax({
@@ -2507,6 +2644,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                             };
                         };
                         $scope.$apply();
+                        $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -2526,6 +2664,57 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                         //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
                     }
                 });//fin de ajax para llenar cliente
+
+
+                /************************************************************///
+                ////carga de vendedor para llenar nota
+                $.ajax({
+                    // la URL para la petición
+                    url : 'php/empleado.listar.nota.php',
+ 
+                    // la información a enviar
+                    // (también es posible utilizar una cadena de datos)
+                    data : { 
+                        codigo: "vendedor"
+                    },
+ 
+                    // especifica si será una petición POST o GET
+                    type : 'POST',
+ 
+                    // el tipo de información que se espera de respuesta
+                    dataType : 'json',
+ 
+                    // código a ejecutar si la petición es satisfactoria;
+                    // la respuesta es pasada como argumento a la función
+                    success : function(dataUser) {
+                        //console.log(dataUser);
+                        $scope.datav = {
+                            availableOptionsVendedor: dataUser
+                        };
+                        //$scope.selectedVendedor = dataUser;
+                        for(i=0; i<dataUser.length;i++){
+                            if ( dataUser[i].id_empleado == $scope.formDataNotaModificar.id_empleado) {
+                                $scope.selectedVendedor = dataUser[i];
+                            };
+                        };
+                        $scope.$apply();
+                    },
+ 
+                    // código a ejecutar si la petición falla;
+                    // son pasados como argumentos a la función
+                    // el objeto de la petición en crudo y código de estatus de la petición
+                    error : function(xhr, status) {
+                        console.log('Disculpe, existió un problema');
+                    },
+ 
+                    // código a ejecutar sin importar si la petición falló o no
+                    complete : function(xhr, status) {
+                        //console.log('Petición realizada');
+                        //location.href='#/usuario_listar';
+                    }
+                });///fin de ajax vendedor
+                /******************************/
+
 
             },
  
@@ -2547,52 +2736,6 @@ app.controller("notaModificarCtrl", function($scope, $http) {
             }
         });
     
-    ////carga de vendedor para llenar nota
-    $.ajax({
-            // la URL para la petición
-            url : 'php/empleado.listar.nota.php',
- 
-            // la información a enviar
-            // (también es posible utilizar una cadena de datos)
-            data : { 
-                codigo: "vendedor"
-            },
- 
-            // especifica si será una petición POST o GET
-            type : 'POST',
- 
-            // el tipo de información que se espera de respuesta
-            dataType : 'json',
- 
-            // código a ejecutar si la petición es satisfactoria;
-            // la respuesta es pasada como argumento a la función
-            success : function(dataUser) {
-                //console.log(dataUser);
-                $scope.datav = {
-                        availableOptionsVendedor: dataUser
-                };
-                //$scope.selectedVendedor = dataUser;
-                for(i=0; i<dataUser.length;i++){
-                    if ( dataUser[i].id_empleado == $scope.formDataNotaModificar.id_empleado) {
-                        $scope.selectedVendedor = dataUser[i];
-                    };
-                };
-                $scope.$apply();
-            },
- 
-            // código a ejecutar si la petición falla;
-            // son pasados como argumentos a la función
-            // el objeto de la petición en crudo y código de estatus de la petición
-            error : function(xhr, status) {
-                console.log('Disculpe, existió un problema');
-            },
- 
-                // código a ejecutar sin importar si la petición falló o no
-            complete : function(xhr, status) {
-                //console.log('Petición realizada');
-               //location.href='#/usuario_listar';
-            }
-        });
     ////carga de usuario para llenar nota
     /*$.ajax({
             // la URL para la petición
@@ -2639,7 +2782,6 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                //location.href='#/usuario_listar';
             }
         });*/
-
     ////carga de usuario para llenar nota
     $.ajax({
             // la URL para la petición
@@ -2666,7 +2808,6 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                         availableOptionsProducto: dataUser
                 };
                 $scope.selectedPrecio = dataUser;
-
             },
  
             // código a ejecutar si la petición falla;
@@ -2758,6 +2899,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
 
            $(".notaPedido_su").css("display","none");
            $(".notaPedido_suEdit").css("display","block");
+           $(".notaPedido_caSi").css("display","block");
+           $(".notaPedido_caNo").css("display","none");
        };
        if($scope.checkboxModel.value2 == "no"){//no esta marcado
            //posibilita editar
@@ -2766,6 +2909,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
 
            $(".notaPedido_su").css("display","block");
            $(".notaPedido_suEdit").css("display","none");
+           $(".notaPedido_caSi").css("display","none");
+           $(".notaPedido_caNo").css("display","block");
        };
     };
 
@@ -2805,6 +2950,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
     };*/
     //********select escoger Vendedor
     $scope.hasChangedVendedor = function() {
+        $(".carga-info").css("display", "block");
         //console.log($scope.selectedVendedor.nombre);
         $scope.formDataNota.vendedor = $scope.selectedVendedor.nombre;
         $scope.formDataNota.id_empleado = $scope.selectedVendedor.id_empleado;
@@ -2840,7 +2986,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                             };
                         };*/
                         $scope.$apply();
-                
+                        $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -2873,7 +3019,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         //$scope.formDataNota.tc = $(".nota_cam").val();
         //$scope.formDataNota.deposito = $(".n_deposito").val();
 
-
+        $(".carga-info").css("display", "block");
         //**********enviar para agregar*****/
         ////
         $.ajax({
@@ -2898,6 +3044,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 //$(".guardar_nota").css("background", "#90EE90");
                 $(".boton_cambio").removeClass("btn_super");
                 $(".boton_cambio").addClass("btn_agregar_positivo");
+                $scope.$apply();
+                $(".carga-info").css("display", "none");
 
             },
  
@@ -2940,23 +3088,37 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         $scope.notaPedidoForm.notaPedido_descripcion = $scope.selectedPrecio.nombre;
     };
     $scope.hasChangedPrecioSelect = function(){
-        $scope.notaPedido_resultado = $scope.notaPedido_cantidad * $scope.selectedPrecioSelect.id;
+        $scope.notaPedido_resultado = $scope.notaPedido_cantidadNo * $scope.selectedPrecioSelect.id;
         $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultado;
-        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidad;
+        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadNo;
         $scope.notaPedidoForm.notaPedido_precio = $scope.selectedPrecioSelect.id;
     };
-    $scope.escribePrecio = function(){
-        $scope.notaPedido_resultadoEdit = $scope.notaPedido_cantidad * $scope.notaPedido_precioEdit;
+    /**funcion para responder cuando NO se marco editar precio**/
+    $scope.escribePrecioNo = function(){
+        $scope.notaPedido_resultado = $scope.notaPedido_cantidadNo * $scope.selectedPrecioSelect.id;
+        $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultado;
+        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadNo;
+        $scope.notaPedidoForm.notaPedido_precio = $scope.selectedPrecioSelect.id;
+        $scope.notaPedidoForm.notaPedido_entregado = $scope.notaPedido_cantidadNo;
+    };
+    /**funcion para responder cuando SI se marco editar precio**/
+    $scope.escribePrecioSi = function(){
+        $scope.notaPedido_resultadoEdit = $scope.notaPedido_cantidadSi * $scope.notaPedido_precioEdit;
         $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultadoEdit;
-        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidad;
+        $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadSi;
         $scope.notaPedidoForm.notaPedido_precio = $scope.notaPedido_precioEdit;
-        $scope.notaPedido_entregado = $scope.notaPedido_cantidad;
+        $scope.notaPedidoForm.notaPedido_entregado = $scope.notaPedido_cantidadSi;
     };
     $scope.agregarPedidoNota = function(){
         $scope.notaPedidoForm.id_nota = $(".n_numero").val();
         $scope.notaPedidoForm.notaPedido_masa = $(".notaPedido_ma").val();
-        $scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_en").val();
-        //////////////////////////////////////////////////////////////////////
+        //$scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_en").val();
+        //$scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_ca").val();
+        //console.log($(".notaPedido_suEdit").val());
+        //console.log($(".notaPedido_su").val());
+        if ($(".notaPedido_suEdit").val() != "0"  || $(".notaPedido_su").val() != "0") {
+                $(".carga-info").css("display", "block");
+                //////////////////////////////////////////////////////////////////////
                 $.ajax({
                     // la URL para la petición
                     url : 'php/nota.pedido.agregar.php',
@@ -2981,8 +3143,13 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                         $(".np_precioS").css("display","block");
 
                         $(".notaPedido_su").css("display","block");
-                        $(".notaPedido_suEdit").css("display","none");   
+                        $(".notaPedido_suEdit").css("display","none");
+                        /****carga todo por defecto vacio****/   
+                        $scope.notaPedido_cantidadNo = "";
+                        $scope.notaPedido_cantidadSi = "";
+                        $scope.notaPedido_precioEdit = "";
                         $scope.$apply();
+                        $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -2997,13 +3164,19 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                     //console.log('Petición realizada');
                         $(".notaPedido_en").val("0");
                         //$(".notaPedido_ma").val("");
-                        $(".notaPedido_ca").val("");
+                        $(".notaPedido_caSi").val("");
+                        $(".notaPedido_caNo").val("");
                         $(".notaPedido_pr").val("");
                         $(".notaPedido_su").val("0");
                         $(".notaPedido_suEdit").val("0");
+                        $(".notaPedido_caSi").css("display","none");
+                        $(".notaPedido_caNo").css("display","block");
                     }
                 });
                 /////////////////////////////////////////////////////////////////////
+        }else{
+            $("#myModalProgramError").modal("show");
+        }
     };
 
     //********eliminar pedido***************
@@ -3011,6 +3184,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         console.log(a);
         var idNota = $(".n_numero").val();
         var id_borra = a;
+        $(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -3032,6 +3206,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 $scope.datoNotaPedidos = dato;
                 $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);  
                 $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -3078,7 +3253,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         //console.log(clienteVector[0]);
         //console.log(clienteVector[1]);
         //console.log(id_vendedor);
-
+        $(".carga-info").css("display", "block");
         //---ajax para llenar cliente
         //////////////////////////////////////////////////////////////////////
         $.ajax({
@@ -3105,7 +3280,60 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 $scope.checkboxModelCliente.value = "no";
                 $(".n_cliente").css("display","block");
                 $(".crea_cliente").css("display","none");
-                $scope.$apply();
+                //$scope.$apply();
+                //$(".carga-info").css("display", "none");
+                /****nueva consulta de cliente****/
+                //****-------ajax pra llenar cliente ///ajax para llenar el formulario de modificar nota
+                $.ajax({
+                    // la URL para la petición
+                    url : 'php/cliente.listar.nota.php',
+ 
+                    // la información a enviar
+                    // (también es posible utilizar una cadena de datos)
+                    data : { 
+                        id_empleado: id_vendedor
+                    },
+ 
+                    // especifica si será una petición POST o GET
+                    type : 'POST',
+ 
+                    // el tipo de información que se espera de respuesta
+                    dataType : 'json',
+ 
+                    // código a ejecutar si la petición es satisfactoria;
+                    // la respuesta es pasada como argumento a la función
+                    success : function(dataUser) {
+                        //console.log(dataUser);
+                        $scope.datac = {
+                            availableOptionsCliente: dataUser
+                        };
+                        $scope.selectedCliente = dataUser;
+                        /*for(i=0; i<dataUser.length;i++){
+                            if ( dataUser[i].id_cliente == $scope.formDataNotaModificar.id_cliente) {
+                                $scope.selectedCliente = dataUser[i];
+                            };
+                        };*/
+                        $scope.$apply();
+                        $(".carga-info").css("display", "none");
+                    },
+ 
+                    // código a ejecutar si la petición falla;
+                    // son pasados como argumentos a la función
+                    // el objeto de la petición en crudo y código de estatus de la petición
+                    error : function(xhr, status) {
+                        console.log('Disculpe, existió un problema');
+                    },
+ 
+                    // código a ejecutar sin importar si la petición falló o no
+                    complete : function(xhr, status) {
+                        //console.log('Petición realizada');
+                        //location.href='#/usuario_listar';
+                        //var meses = new Array ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+                        //var f=new Date();
+                        //document.write(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());   
+                        //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
+                    }
+                });//fin de ajax para llenar cliente
             },
  
             // código a ejecutar si la petición falla;
@@ -3148,6 +3376,7 @@ app.controller("notaReporteCtrl", function($scope, $http) {
     $scope.formDataNota.id_empleado = "todo";
     $scope.formDataNota.vendedor = "Todos";
     ////carga de vendedor para llenar nota
+    $(".carga-info").css("display", "block");
     $.ajax({
             // la URL para la petición
             url : 'php/empleado.listar.nota.php',
@@ -3178,6 +3407,7 @@ app.controller("notaReporteCtrl", function($scope, $http) {
                     };
                 };*/
                 $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -3235,7 +3465,7 @@ app.controller("notaReporteCtrl", function($scope, $http) {
         $(".calcular_reporte_css").css("display","block");
         //console.log($( ".f_d" ).val());
 
-
+        $(".carga-info").css("display", "block");
         //---ajax para filtrar nota
         //////////////////////////////////////////////////////////////////////
         $.ajax({
@@ -3279,6 +3509,7 @@ app.controller("notaReporteCtrl", function($scope, $http) {
                     }
                 }
                 $scope.$apply();
+                $(".carga-info").css("display", "none");
             },
             // código a ejecutar si la petición falla;
             // son pasados como argumentos a la función

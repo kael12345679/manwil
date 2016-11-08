@@ -32,6 +32,7 @@
 
 </head>
 <body class="contenido">
+<div class="carga-info hidden_carga"> <img src="img/loader.gif" class="imagen-carga"></div>
 <!--para escritorio-->
 <div class="col-md-12">
   <div class="col-md-12 hidden-xs margin_top_20 border_1">
@@ -98,7 +99,7 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper" class="carga-info">
+        <div id="page-content-wrapper" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -129,6 +130,27 @@
       <div class="modal-footer">
         <button type="button" class="btn btn_afirmativo salir_sesion" ">Aceptar</button>
         <button type="button" class="btn btn_afirmativo" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal Error -->
+<div id="myModalProgramError" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+        <h4 class="modal-title">Error</h4>
+      </div>
+      <div class="modal-body">
+        <p>Verifique datos</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn_afirmativo" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
 
