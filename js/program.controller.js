@@ -2540,6 +2540,14 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
 ////MODIFICAR
 app.controller("notaModificarCtrl", function($scope, $http) {
     $("#focus-ini").focus();
+    $("body").keyup(function(event){
+        if(event.keyCode == 119){
+            $scope.imprimirNota();
+            return false;
+        }
+    });
+
+    
 ////declarar valores por defecto
     $scope.notaPedido_cantidad = "";
     $scope.notaPedido_precioEdit = "";
