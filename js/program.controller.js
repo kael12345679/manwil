@@ -1815,6 +1815,12 @@ app.controller("notaListarCtrl", function($scope, $http) {
 ////AGREGAR
 app.controller("notaAgregarCtrl", function($scope, $http) {
     $("#focus-ini").focus();
+    $("body").keyup(function(event){
+        if(event.keyCode == 119){
+            $scope.imprimirNota();
+            return false;
+        }
+    });
     ////carga de cliente para llenar nota
     $scope.notaPedido_cantidad = "";
     $scope.notaPedido_precioEdit = "";
