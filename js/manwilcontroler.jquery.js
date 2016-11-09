@@ -33,7 +33,7 @@ $(document).ready(function(){
     }; 
 
     /***para cambiar el teclado enter por tab en la pagina***/
-    $('body').on('keydown', 'input, select, textarea', function(e) {
+    /*$('body').on('keydown', 'input, select, textarea', function(e) {
         var self = $(this)
         , form = self.parents('form:eq(0)')
         , focusable
@@ -49,5 +49,27 @@ $(document).ready(function(){
             }
             return false;
         }
+    });*/
+
+
+    /***para cambiar el teclado enter por tab en la pagina***/
+    $('body').on('keydown', 'input, select, textarea', function(e) {
+        var self = $(this)
+        , form = self.parents('form:eq(0)')
+        , focusable
+        , next
+        ;
+        if (e.keyCode == 13) {
+            focusable = form.find('input,select,button').filter(':visible');
+            next = focusable.eq(focusable.index(this)+1);
+            if (next.length) {
+                next.focus();
+            } else {
+                form.submit();
+            }
+            return false;
+        }
+
     });
+
 });

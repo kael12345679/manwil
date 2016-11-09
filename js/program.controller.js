@@ -1814,6 +1814,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
 });
 ////AGREGAR
 app.controller("notaAgregarCtrl", function($scope, $http) {
+    $("#focus-ini").focus();
     ////carga de cliente para llenar nota
     $scope.notaPedido_cantidad = "";
     $scope.notaPedido_precioEdit = "";
@@ -2150,9 +2151,11 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                 //},3000);
                 $(".n_numero").val(dataUser[0].id_nota);
                 $(".pedido_nota_css").css("display", "block");
+                $(".pedido_nota_css_2").css("display","block");
                 $(".btn_desaparece").css("display", "none");
                 $scope.$apply();
-                $(".carga-info").css("display", "none");           
+                $(".carga-info").css("display", "none");
+                $("#id_notaPedido_productoS").focus();           
             },
  
             // código a ejecutar si la petición falla;
@@ -2223,7 +2226,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
         //$scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_ca").val();
 
         if ($(".notaPedido_suEdit").val() != "0"  || $(".notaPedido_su").val() != "0") {
-                $(".carga-info").css("display", "block");
+                //$(".carga-info").css("display", "block");
                 //////////////////////////////////////////////////////////////////////
                 $.ajax({
                     // la URL para la petición
@@ -2244,6 +2247,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                     success : function(dato) {
                         $scope.datoNotaPedidos = dato;
                         $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);
+                        $scope.$apply();
                     },
  
                     // código a ejecutar si la petición falla;
@@ -2260,29 +2264,29 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                     }
                 });
                 /////////////////////////////////////////////////////////////////////
-            $scope.checkboxModel.value2 = "no";
-                        $(".notaPedido_pr").css("display","block");
-                        $(".np_precioS").css("display","none");
-                        $(".pedido_nota_css_2").css("display","none");
-                        $(".notaPedido_su").css("display","none");
-                        $(".notaPedido_suEdit").css("display","block");
+                $scope.checkboxModel.value2 = "no";
+                $(".notaPedido_pr").css("display","block");
+                $(".np_precioS").css("display","none");
+                $(".pedido_nota_css_2").css("display","block");
+                $(".notaPedido_su").css("display","none");
+                $(".notaPedido_suEdit").css("display","block");
 
-                        $(".notaPedido_en").val("0");
-                        //$(".notaPedido_ma").val("");
-                        $(".notaPedido_caSi").val("");
-                        $(".notaPedido_caNo").val("");
-                        $(".notaPedido_pr").val("");
-                        $(".notaPedido_su").val("0");
-                        $(".notaPedido_suEdit").val("0");
-                        $(".notaPedido_caSi").css("display","block");
-                        $(".notaPedido_caNo").css("display","none");
+                $(".notaPedido_en").val("0");
+                //$(".notaPedido_ma").val("");
+                $(".notaPedido_caSi").val("");
+                $(".notaPedido_caNo").val("");
+                $(".notaPedido_pr").val("");
+                $(".notaPedido_su").val("0");
+                $(".notaPedido_suEdit").val("0");
+                $(".notaPedido_caSi").css("display","block");
+                $(".notaPedido_caNo").css("display","none");
 
-            /****carga todo por defecto vacio****/   
-                        $scope.notaPedido_cantidadNo = "";
-                        $scope.notaPedido_cantidadSi = "";
-                        $scope.notaPedido_precioEdit = "";
-                        $scope.$apply();
-                        $(".carga-info").css("display", "none");
+                /****carga todo por defecto vacio****/   
+                $scope.notaPedido_cantidadNo = "";
+                $scope.notaPedido_cantidadSi = "";
+                $scope.notaPedido_precioEdit = "";
+                $("#id_notaPedido_productoS").focus();
+                //$(".carga-info").css("display", "none");
         }else{
             $("#myModalProgramError").modal("show");
         }
@@ -2295,7 +2299,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
         var idNota = $(".n_numero").val();
         var id_borra = a;
 
-        $(".carga-info").css("display", "block");
+        //$(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -2317,7 +2321,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                 $scope.datoNotaPedidos = dato;
                 $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);  
                 $scope.$apply();
-                $(".carga-info").css("display", "none");
+                //$(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -2535,6 +2539,7 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
 });
 ////MODIFICAR
 app.controller("notaModificarCtrl", function($scope, $http) {
+    $("#focus-ini").focus();
 ////declarar valores por defecto
     $scope.notaPedido_cantidad = "";
     $scope.notaPedido_precioEdit = "";
@@ -3120,7 +3125,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         //console.log($(".notaPedido_suEdit").val());
         //console.log($(".notaPedido_su").val());
         if ($(".notaPedido_suEdit").val() != "0"  || $(".notaPedido_su").val() != "0") {
-                $(".carga-info").css("display", "block");
+                //$(".carga-info").css("display", "block");
                 //////////////////////////////////////////////////////////////////////
                 $.ajax({
                     // la URL para la petición
@@ -3141,18 +3146,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                     success : function(dato) {
                         $scope.datoNotaPedidos = dato;
                         $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);
-                        $scope.checkboxModel.value2 = "no";
-                        $(".notaPedido_pr").css("display","block");
-                        $(".np_precioS").css("display","none");
-                        $(".pedido_nota_css_2").css("display","none");
-                        $(".notaPedido_su").css("display","none");
-                        $(".notaPedido_suEdit").css("display","block");
-                        /****carga todo por defecto vacio****/   
-                        $scope.notaPedido_cantidadNo = "";
-                        $scope.notaPedido_cantidadSi = "";
-                        $scope.notaPedido_precioEdit = "";
                         $scope.$apply();
-                        $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -3165,18 +3159,33 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                     // código a ejecutar sin importar si la petición falló o no
                     complete : function(xhr, status) {
                     //console.log('Petición realizada');
-                        $(".notaPedido_en").val("0");
-                        //$(".notaPedido_ma").val("");
-                        $(".notaPedido_caSi").val("");
-                        $(".notaPedido_caNo").val("");
-                        $(".notaPedido_pr").val("");
-                        $(".notaPedido_su").val("0");
-                        $(".notaPedido_suEdit").val("0");
-                        $(".notaPedido_caSi").css("display","block");
-                        $(".notaPedido_caNo").css("display","none");
+                        
                     }
                 });
                 /////////////////////////////////////////////////////////////////////
+                $scope.checkboxModel.value2 = "no";
+                $(".notaPedido_pr").css("display","block");
+                $(".np_precioS").css("display","none");
+                $(".pedido_nota_css_2").css("display","block");
+                $(".notaPedido_su").css("display","none");
+                $(".notaPedido_suEdit").css("display","block");
+
+                $(".notaPedido_en").val("0");
+                //$(".notaPedido_ma").val("");
+                $(".notaPedido_caSi").val("");
+                $(".notaPedido_caNo").val("");
+                $(".notaPedido_pr").val("");
+                $(".notaPedido_su").val("0");
+                $(".notaPedido_suEdit").val("0");
+                $(".notaPedido_caSi").css("display","block");
+                $(".notaPedido_caNo").css("display","none");
+
+                /****carga todo por defecto vacio****/   
+                $scope.notaPedido_cantidadNo = "";
+                $scope.notaPedido_cantidadSi = "";
+                $scope.notaPedido_precioEdit = "";
+                $("#id_notaPedido_productoS").focus();
+                //$(".carga-info").css("display", "none");
         }else{
             $("#myModalProgramError").modal("show");
         }
@@ -3187,7 +3196,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         console.log(a);
         var idNota = $(".n_numero").val();
         var id_borra = a;
-        $(".carga-info").css("display", "block");
+        //$(".carga-info").css("display", "block");
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -3209,7 +3218,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 $scope.datoNotaPedidos = dato;
                 $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);  
                 $scope.$apply();
-                $(".carga-info").css("display", "none");
+                //$(".carga-info").css("display", "none");
             },
  
             // código a ejecutar si la petición falla;
@@ -3431,13 +3440,13 @@ app.controller("notaReporteCtrl", function($scope, $http) {
     $scope.n_reporte_vendedor = function(){
         if($scope.checkboxModelVendedorReporte.valor == "si"){
             //console.log("si");//esta marcado
-            $(".oculta_reporte_vendedor").css("display", "block");
+            /*$(".oculta_reporte_vendedor").css("display", "block");*/
         };
         if($scope.checkboxModelVendedorReporte.valor == "no"){
             //console.log("no");//no esta marcado
-            $scope.formDataNota.id_empleado = "todo";
+            /*$scope.formDataNota.id_empleado = "todo";
             $scope.formDataNota.vendedor = "Todos";
-            $(".oculta_reporte_vendedor").css("display", "none");  
+            $(".oculta_reporte_vendedor").css("display", "none");  */
         };
     };
 

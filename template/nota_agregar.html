@@ -22,7 +22,7 @@
 	<div class="col-md-6"><label for="nota_cambio">T. C. : </label></div><div class="col-md-6"><input type="text" name="nota_cambio" class="form-control nota_cam" placeholder="" ng-model='nota_cambio'></div>
 </div>-->
 <div class="col-md-6 margin_10 form-group guardar_nota">
-	<div class="col-md-6"><label for="nota_pago">FORMA DE PAGO: </label></div><div class="col-md-6"><select class="form-control n_pago" ng-options="option.nombre for option in dataF track by option.valor" ng-model="selectedFormaPago" ng-change="hasChangedFormaPago
+	<div class="col-md-6"><label for="nota_pago">FORMA DE PAGO: </label></div><div class="col-md-6"><select id="focus-ini" class="form-control n_pago" ng-options="option.nombre for option in dataF track by option.valor" ng-model="selectedFormaPago" ng-change="hasChangedFormaPago
 ()"></select></div>
 </div>
 <div class="col-md-6 margin_10 form-group guardar_nota">
@@ -132,7 +132,7 @@
 				<td class="text-center">{{item.entregado}}</td>
 				<td class="text-center">{{item.precio}}</td>
 				<td class="text-right">{{item.subtotal}}</td>
-				<td ng-click="pedido_eliminar(item.codigo)" class="text-center"><span class="glyphicon glyphicon-remove elimina_css" aria-hidden="true"></span></td>
+				<td ng-click="pedido_eliminar(item.codigo)" class="text-center"><a href=""><span class="glyphicon glyphicon-remove elimina_css" aria-hidden="true"></span></a></td>
 			</tr>
 		</tbody>
 	</table>
