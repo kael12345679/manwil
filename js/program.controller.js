@@ -29,7 +29,7 @@ app.controller("productoCtrl", function($scope, $http, $location) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-        $(".carga-info").css("display", "block");
+        //$(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -56,7 +56,7 @@ app.controller("productoCtrl", function($scope, $http, $location) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
-                    $(".carga-info").css("display", "none");
+                    //$(".carga-info").css("display", "none");
                 },
  
                 // código a ejecutar si la petición falla;
@@ -389,7 +389,7 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-        $(".carga-info").css("display", "block");
+        //$(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -442,7 +442,7 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
             } else {
                 $http.post('php/cliente.listar.php').success(function (largeLoad) {
                     $scope.setPagingData(largeLoad,page,pageSize);
-                    $(".carga-info").css("display", "none");
+                    //$(".carga-info").css("display", "none");
                 });
             }
         }, 100);
@@ -886,7 +886,7 @@ app.controller("empleadoListarCtrl", function($scope, $http) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-        $(".carga-info").css("display", "block");
+        //$(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -913,7 +913,7 @@ app.controller("empleadoListarCtrl", function($scope, $http) {
                             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                         });
                     $scope.setPagingData(data,page,pageSize);
-                    $(".carga-info").css("display", "none");
+                    //$(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -1262,7 +1262,7 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-        $(".carga-info").css("display", "block");
+        //$(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -1289,7 +1289,7 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
                             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                         });
                     $scope.setPagingData(data,page,pageSize);
-                    $(".carga-info").css("display", "none");
+                    //$(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -1648,7 +1648,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
         }
     };
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
-        $(".carga-info").css("display", "block");
+        //$(".carga-info").css("display", "block");
         setTimeout(function () {
             var data;
             if (searchText) {
@@ -1675,7 +1675,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
                             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                         });
                     $scope.setPagingData(data,page,pageSize);
-                    $(".carga-info").css("display", "none");
+                    //$(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
