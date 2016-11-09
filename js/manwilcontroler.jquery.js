@@ -6,7 +6,7 @@ $(document).ready(function(){
     });
     
 
-    //**------sseion for user    
+    //**------seion for user    
     if (sessionStorage.getItem("activo") == "1") {
     	$(".contenido").css("display","block");
     	$(".nombre_usuario_head").prepend(sessionStorage.getItem("user"));

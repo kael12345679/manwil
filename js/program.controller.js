@@ -1980,16 +1980,6 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
     $scope.editarPrecio = function(){
          if($scope.checkboxModel.value2 == "si"){//esta marcado
            //posibilita editar
-           $(".notaPedido_pr").css("display","block");
-           $(".np_precioS").css("display","none");
-
-           $(".notaPedido_su").css("display","none");
-           $(".notaPedido_suEdit").css("display","block");
-           $(".notaPedido_caSi").css("display","block");
-           $(".notaPedido_caNo").css("display","none");
-       };
-       if($scope.checkboxModel.value2 == "no"){//no esta marcado
-           //posibilita editar
            $(".notaPedido_pr").css("display","none");
            $(".np_precioS").css("display","block");  
 
@@ -1997,6 +1987,16 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
            $(".notaPedido_suEdit").css("display","none");
            $(".notaPedido_caSi").css("display","none");
            $(".notaPedido_caNo").css("display","block");
+       };
+       if($scope.checkboxModel.value2 == "no"){//no esta marcado
+           //posibilita editar
+           $(".notaPedido_pr").css("display","block");
+           $(".np_precioS").css("display","none");
+
+           $(".notaPedido_su").css("display","none");
+           $(".notaPedido_suEdit").css("display","block");
+           $(".notaPedido_caSi").css("display","block");
+           $(".notaPedido_caNo").css("display","none");
        };
     };
 
@@ -2244,18 +2244,6 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                     success : function(dato) {
                         $scope.datoNotaPedidos = dato;
                         $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);
-                        $scope.checkboxModel.value2 = "no";
-                        $(".notaPedido_pr").css("display","none");
-                        $(".np_precioS").css("display","block");
-                        $(".pedido_nota_css_2").css("display","block");
-                        $(".notaPedido_su").css("display","block");
-                        $(".notaPedido_suEdit").css("display","none");
-                        /****carga todo por defecto vacio****/   
-                        $scope.notaPedido_cantidadNo = "";
-                        $scope.notaPedido_cantidadSi = "";
-                        $scope.notaPedido_precioEdit = "";
-                        $scope.$apply();
-                        $(".carga-info").css("display", "none");
                     },
  
                     // código a ejecutar si la petición falla;
@@ -2268,6 +2256,17 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                     // código a ejecutar sin importar si la petición falló o no
                     complete : function(xhr, status) {
                     //console.log('Petición realizada');
+                        
+                    }
+                });
+                /////////////////////////////////////////////////////////////////////
+            $scope.checkboxModel.value2 = "no";
+                        $(".notaPedido_pr").css("display","block");
+                        $(".np_precioS").css("display","none");
+                        $(".pedido_nota_css_2").css("display","none");
+                        $(".notaPedido_su").css("display","none");
+                        $(".notaPedido_suEdit").css("display","block");
+
                         $(".notaPedido_en").val("0");
                         //$(".notaPedido_ma").val("");
                         $(".notaPedido_caSi").val("");
@@ -2275,11 +2274,15 @@ app.controller("notaAgregarCtrl", function($scope, $http) {
                         $(".notaPedido_pr").val("");
                         $(".notaPedido_su").val("0");
                         $(".notaPedido_suEdit").val("0");
-                        $(".notaPedido_caSi").css("display","none");
-                        $(".notaPedido_caNo").css("display","block");
-                    }
-                });
-                /////////////////////////////////////////////////////////////////////
+                        $(".notaPedido_caSi").css("display","block");
+                        $(".notaPedido_caNo").css("display","none");
+
+            /****carga todo por defecto vacio****/   
+                        $scope.notaPedido_cantidadNo = "";
+                        $scope.notaPedido_cantidadSi = "";
+                        $scope.notaPedido_precioEdit = "";
+                        $scope.$apply();
+                        $(".carga-info").css("display", "none");
         }else{
             $("#myModalProgramError").modal("show");
         }
@@ -2892,7 +2895,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
     };
     ////agregar pedido checkbox
     $scope.editarPrecio = function(){
-        if($scope.checkboxModel.value2 == "si"){//esta marcado
+        if($scope.checkboxModel.value2 == "no"){//esta marcado
            //posibilita editar
            $(".notaPedido_pr").css("display","block");
            $(".np_precioS").css("display","none");
@@ -2902,7 +2905,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
            $(".notaPedido_caSi").css("display","block");
            $(".notaPedido_caNo").css("display","none");
        };
-       if($scope.checkboxModel.value2 == "no"){//no esta marcado
+       if($scope.checkboxModel.value2 == "si"){//no esta marcado
            //posibilita editar
            $(".notaPedido_pr").css("display","none");
            $(".np_precioS").css("display","block");  
@@ -3139,11 +3142,11 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                         $scope.datoNotaPedidos = dato;
                         $(".notaPedido_to").val($scope.datoNotaPedidos[0].total);
                         $scope.checkboxModel.value2 = "no";
-                        $(".notaPedido_pr").css("display","none");
-                        $(".np_precioS").css("display","block");
-
-                        $(".notaPedido_su").css("display","block");
-                        $(".notaPedido_suEdit").css("display","none");
+                        $(".notaPedido_pr").css("display","block");
+                        $(".np_precioS").css("display","none");
+                        $(".pedido_nota_css_2").css("display","none");
+                        $(".notaPedido_su").css("display","none");
+                        $(".notaPedido_suEdit").css("display","block");
                         /****carga todo por defecto vacio****/   
                         $scope.notaPedido_cantidadNo = "";
                         $scope.notaPedido_cantidadSi = "";
@@ -3169,8 +3172,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                         $(".notaPedido_pr").val("");
                         $(".notaPedido_su").val("0");
                         $(".notaPedido_suEdit").val("0");
-                        $(".notaPedido_caSi").css("display","none");
-                        $(".notaPedido_caNo").css("display","block");
+                        $(".notaPedido_caSi").css("display","block");
+                        $(".notaPedido_caNo").css("display","none");
                     }
                 });
                 /////////////////////////////////////////////////////////////////////

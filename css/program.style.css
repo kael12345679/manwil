@@ -114,19 +114,19 @@
 	margin-top: 10px;
 }
 .notaPedido_pr{
-	display: none;
+	display: block;
 }
 .np_precioS{
-	display: block;
+	display: none;
 } 
 .caja_base{
 	width: 20px;
 }
 .notaPedido_suEdit{
-	display:none;
+	display:block;
 }
 .notaPedido_su{
-	display:block;
+	display:none;
 }
 .btn_super:hover,.btn_super:focus{
 	/*border: 1px solid #F6F6F6;*/
@@ -270,6 +270,6 @@ input[type="checkbox"], input[type="radio"]{
 .oculta_reporte_vendedor{
 	display: none;
 }
-.notaPedido_caSi{
+.notaPedido_caNo{
 	display: none;
 }
