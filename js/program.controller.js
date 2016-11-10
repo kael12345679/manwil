@@ -3465,14 +3465,48 @@ app.controller("notaReporteCtrl", function($scope, $http) {
         };
     };
 
-    /*************checkbox para dar de baja***************/
-    $scope.reporte_baja = function( a){
-        if($scope.checkboxReporteModelBaja.valor == "CANCELADO"){
-            console.log("CANCELADO"+a);//esta marcado
-        };
-        if($scope.checkboxReporteModelBaja.valor == "DEBE"){
-            console.log("DEBE"+a);//no esta marcado
-        };
+    /*************boton para CANCELADO***************/
+    $scope.nota_cancelado = function( a){
+        //guardar cancelado
+        $.ajax({
+            // la URL para la petición
+            url : 'php/empleado.listar.nota.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { 
+                estado: "CANCELAR"
+            },
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dataUser) {
+                
+            },
+ 
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                //console.log('Petición realizada');
+               //location.href='#/usuario_listar';
+            }
+        });
+    };
+    /*************boton para DEBE***************/
+    $scope.nota_debe = function( a){
+        
     };
 
     $scope.hasChangedVendedor = function() {
@@ -3499,6 +3533,9 @@ app.controller("notaReporteCtrl", function($scope, $http) {
     $scope.calcular_reporte = function(){
         $scope.desde = $(".f_d").val();
         $scope.hasta = $(".f_h").val();
+        localStorage.setItem("fecha_d",$(".f_d").val());
+        localStorage.setItem("fecha_h",$(".f_h").val());
+
         $(".calcular_reporte_css").css("display","block");
         //console.log($( ".f_d" ).val());
 
@@ -3589,6 +3626,292 @@ app.controller("notaReporteCtrl", function($scope, $http) {
     };
 });
 
+
+//***-----------  NOTA REPORTE  --------
+app.controller("reporteAgregarCtrl", function($scope, $http) {
+
+    /*********************CARGA DATA PICKER**************************/
+    $( ".date_desde" ).datepicker({
+        monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+        dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado" ],
+        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+        dateFormat: "yy-mm-dd"
+    });
+    $( ".date_hasta" ).datepicker({
+        monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+        dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado" ],
+        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+        dateFormat: "yy-mm-dd"
+    });
+
+     ////carga de vendedor para llenar REPORTE
+    $(".carga-info").css("display", "block");
+    $.ajax({
+            // la URL para la petición
+            url : 'php/empleado.listar.nota.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { 
+                codigo: "vendedor"
+            },
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dataUser) {
+                //console.log(dataUser);
+                $scope.datav = {
+                        availableOptionsVendedor: dataUser
+                };
+                $scope.selectedVendedor = dataUser;
+                /*for(i=0; i<dataUser.length;i++){
+                    if ( dataUser[i].id_empleado == $scope.formDataNotaModificar.id_empleado) {
+                        $scope.selectedVendedor = dataUser[i];
+                    };
+                };*/
+                $scope.$apply();
+                $(".carga-info").css("display", "none");
+            },
+ 
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+                // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                //console.log('Petición realizada');
+               //location.href='#/usuario_listar';
+            }
+        });
+    //FUNCION ENCARGAD DE DEVOLVER EL VENDEDOR Y SU ID PARA EL REPORTE
+    $scope.hasChangedVendedor = function() {
+        //console.log($scope.selectedVendedor.nombre);
+        localStorage.setItem("id_vendedor",$scope.selectedVendedor.id_empleado);
+        localStorage.setItem("nombre_vendedor",$scope.selectedVendedor.nombre);
+    };
+
+    //funcion para crear    REPORTE
+    $scope.crear_reporte = function(){
+        localStorage.setItem("fecha_d",$(".f_d").val());
+        localStorage.setItem("fecha_h",$(".f_h").val());
+        location.href = '#/reporte_listar';
+    };
+    /////////////////////////////////////////////////////////////////////
+    //**-------botón volver atrás-----***
+    $scope.volver = function(){
+        window.history.back();       
+    };
+
+});
+
+app.controller("reporteListarCtrl", function($scope, $http) {
+
+    //declaracion de variables segun lo guardado
+    $scope.reporte_fecha_desde = localStorage.getItem("fecha_d");
+    $scope.reporte_fecha_hasta = localStorage.getItem("fecha_h");
+    $scope.reporte_nombre_vendedor =  localStorage.getItem("nombre_vendedor");
+    $scope.reporte_id_vendedor = localStorage.getItem("id_vendedor");
+
+    //ajax para cargar los datos del reporte
+    $(".carga-info").css("display", "block");
+    //---ajax para filtrar nota
+    //////////////////////////////////////////////////////////////////////
+    $.ajax({
+        // la URL para la petición
+        url : 'php/nota.reporte.listar.todo.php',
+ 
+        // la información a enviar
+        // (también es posible utilizar una cadena de datos)
+        data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor},
+ 
+        // especifica si será una petición POST o GET
+        type : 'POST',
+ 
+        // el tipo de información que se espera de respuesta
+        dataType : 'json',
+ 
+        // código a ejecutar si la petición es satisfactoria;
+        // la respuesta es pasada como argumento a la función
+        success : function(dato) {
+            $scope.dataReporte = dato;
+            $scope.todo_canceldo = {};
+            $scope.todo_debe = {};
+            contc = 0;
+            contd = 0;
+            $scope.total_totalesc = 0;
+            $scope.total_totalesd = 0;
+            for (var i = 0; i < dato.length; i++) {
+                if (dato[i].baja == "CANCELADO") {
+                    $scope.todo_canceldo[contc] = dato[i];
+                    $scope.todo_canceldo[contc].id = contc+1;
+                    $scope.total_totalesc = ($scope.total_totalesc * 1) + (dato[i].monto * 1);
+                    contc++;
+                }
+            }
+            for (var i = 0; i < dato.length; i++) {
+                if (dato[i].baja == "DEBE") {
+                    $scope.todo_debe[contd] = dato[i];
+                    $scope.todo_debe[contd].id = contd+1;
+                    $scope.total_totalesd = ($scope.total_totalesd * 1) + (dato[i].monto * 1);
+                    contd++;
+                }
+            }
+            $scope.$apply();
+            $(".carga-info").css("display", "none");
+            },
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                console.log('Petición realizada');
+                //location.reload(); 
+                //$(".notaPedido_en").val("0");
+            }
+        });
+        /////////////////////////////////////////////////////////////////////
+
+    ///funcion para DAR DE BAJA A LAS NOTAS
+    $scope.nota_debe = function(id_nota_reporte){
+
+        //////////////////////////////////////////////////////////////////////
+        $.ajax({
+            // la URL para la petición
+            url : 'php/nota.reporte.listar.todo.modificar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor, id_nota : id_nota_reporte , baja: "CANCELADO"},
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dato) {
+                $scope.dataReporte = dato;
+                $scope.todo_canceldo = {};
+                $scope.todo_debe = {};
+                contc = 0;
+                contd = 0;
+                $scope.total_totalesc = 0;
+                $scope.total_totalesd = 0;
+                for (var i = 0; i < dato.length; i++) {
+                    if (dato[i].baja == "CANCELADO") {
+                        $scope.todo_canceldo[contc] = dato[i];
+                        $scope.todo_canceldo[contc].id = contc+1;
+                        $scope.total_totalesc = ($scope.total_totalesc * 1) + (dato[i].monto * 1);
+                        contc++;
+                    }
+                }
+                for (var i = 0; i < dato.length; i++) {
+                    if (dato[i].baja == "DEBE") {
+                        $scope.todo_debe[contd] = dato[i];
+                        $scope.todo_debe[contd].id = contd+1;
+                        $scope.total_totalesd = ($scope.total_totalesd * 1) + (dato[i].monto * 1);
+                        contd++;
+                    }
+                }
+                $scope.$apply();
+            },
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                console.log('Petición realizada');
+            }
+        });
+    /////////////////////////////////////////////////////////////////////
+    };
+
+    ///funcion para DAR DE BAJA A LAS NOTAS
+    $scope.nota_cancelado = function(id_nota_reporte){
+      //////////////////////////////////////////////////////////////////////
+        $.ajax({
+            // la URL para la petición
+            url : 'php/nota.reporte.listar.todo.modificar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor, id_nota : id_nota_reporte , baja: "DEBE"},
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dato) {
+                $scope.dataReporte = dato;
+                $scope.todo_canceldo = {};
+                $scope.todo_debe = {};
+                contc = 0;
+                contd = 0;
+                $scope.total_totalesc = 0;
+                $scope.total_totalesd = 0;
+                for (var i = 0; i < dato.length; i++) {
+                    if (dato[i].baja == "CANCELADO") {
+                        $scope.todo_canceldo[contc] = dato[i];
+                        $scope.todo_canceldo[contc].id = contc+1;
+                        $scope.total_totalesc = ($scope.total_totalesc * 1) + (dato[i].monto * 1);
+                        contc++;
+                    }
+                }
+                for (var i = 0; i < dato.length; i++) {
+                    if (dato[i].baja == "DEBE") {
+                        $scope.todo_debe[contd] = dato[i];
+                        $scope.todo_debe[contd].id = contd+1;
+                        $scope.total_totalesd = ($scope.total_totalesd * 1) + (dato[i].monto * 1);
+                        contd++;
+                    }
+                }
+                $scope.$apply();
+            },
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                console.log('Petición realizada');
+            }
+        });
+    /////////////////////////////////////////////////////////////////////      
+    };
+
+    /////////////////////////////////////////////////////////////////////
+    //**-------botón volver atrás-----***
+    $scope.volver = function(){
+        window.history.back();       
+    };
+
+});
 //*******************************************************************
 //***************************************controller*******************************
 //***************************************router*******************************
@@ -3613,9 +3936,13 @@ app.config(function($routeProvider) {
         templateUrl : "template/nota_modificar.html",
         controller : "notaModificarCtrl"
     })
-    .when("/nota_reporte", {
-        templateUrl : "template/nota_reporte.html",
-        controller : "notaReporteCtrl"
+    .when("/reporte_listar", {
+        templateUrl : "template/reporte_listar.html",
+        controller : "reporteListarCtrl"
+    })
+    .when("/reporte_agregar", {
+        templateUrl : "template/reporte_agregar.html",
+        controller : "reporteAgregarCtrl"
     })
     .when("/producto", {
         templateUrl : "template/producto_listar.html",
@@ -3629,15 +3956,15 @@ app.config(function($routeProvider) {
         templateUrl : "template/producto_modificar.html",
         controller : "productoModificarCtrl"
     })
-      .when("/cliente", {
+    .when("/cliente", {
         templateUrl : "template/cliente_listar.html",
         controller : "clienteListarCtrl"
     })
-     .when("/cliente_modificar", {
+    .when("/cliente_modificar", {
         templateUrl : "template/cliente_modificar.html",
         controller : "clienteModificarCtrl"
     })
-     .when("/cliente_agrega", {
+    .when("/cliente_agrega", {
         templateUrl : "template/cliente_agrega.html",
         controller : "clienteAgregarCtrl"
     })

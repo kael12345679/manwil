@@ -273,3 +273,9 @@ input[type="checkbox"], input[type="radio"]{
 .notaPedido_caNo{
 	display: none;
 }
+.altura-tabla{
+	height: 300px;
+}
+.small_cell{
+	width: 20px;
+}

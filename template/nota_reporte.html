@@ -61,8 +61,7 @@
 			<tr ng-repeat="item in todo_canceldo">
 				<td class="color_orange">{{item.id}}</td>
 				<td>{{item.id_nota}}</td>
-				<td> <input type="checkbox" ng-model="checkboxModelBaja.valor"
-           ng-true-value="'CANCELADO'" ng-false-value="'DEBE'" ng-click="n_dadoBaja()" class="caja_baja"></td>
+				<td><a href="" ng-click = "nota_cancelado(item.id_nota)"><span class="glyphicon glyphicon-transfer"></span></a></td>
            		<td>{{item.baja}}</td>
 				<td>{{item.cliente}}</td>
 				<td>{{item.vendedor}}</td>
@@ -95,8 +94,7 @@
 			<tr ng-repeat="item in todo_debe">
 				<td class="color_orange">{{item.id}}</td>
 				<td>{{item.id_nota}}</td>
-				<td><input id={{item.id_nota}} type="checkbox" ng-model="checkboxReporteModelBaja.valor"
-           ng-true-value="'CANCELADO'" ng-false-value="'DEBE'" ng-click="reporte_baja(item.id_nota)" class="caja_baja"></td>
+				<td><a href="" ng-click = "nota_debe(item.id_nota)"><span class="glyphicon glyphicon-transfer"></span></a></td>
 				<td>{{item.baja}}</td>
 				<td>{{item.cliente}}</td>
 				<td>{{item.vendedor}}</td>
