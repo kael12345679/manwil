@@ -1509,6 +1509,7 @@ app.controller("usuarioModificarCtrl", function($scope, $http) {
     $scope.formData = {};
     $scope.formDataSend = {};
     $scope.usuario_codigo = localStorage.getItem("id_modifica");
+    var conteo = 0;
 
     $(".carga-info").css("display", "block");
     $.ajax({
@@ -1616,6 +1617,22 @@ app.controller("usuarioModificarCtrl", function($scope, $http) {
     //**-------botón volver atrás-----***
     $scope.volver = function(){
         window.history.back();       
+    };
+    // funcion para ocultar el password
+     
+    $scope.mostrar_password=function(){
+        //alert ("presiono boton");
+    ///$scope.click(mostrar_password=function() { //Funcion del Click
+    if(conteo == 0) { //Si la variable es igual a 0
+        conteo = 1; //La cambiamos a 1
+        $("#pass").removeAttr("type", "password"); //Removemos el atributo de Tipo Contraseña
+        $("#pass").prop("type", "text"); 
+         }//Agregamos el atributo de Tipo Texto(Para que se vea la Contraseña escribida)
+    else{ //En caso contrario
+        conteo = 0; //La cambiamos a 0
+        $("#pass").removeAttr("type", "text"); //Removemos el atributo de Tipo Texto
+        $("#pass").prop("type", "password"); //Agregamos el atributo de Tipo Contraseña
+        } //Cierre del Else
     };
 });
 

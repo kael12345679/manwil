@@ -29,7 +29,12 @@
 </div>
 <div class="form-group col-md-12 margin_10">
 	<div class="col-md-3"><label for="usuario_password">Contraseña</label></div>
-	<div class="col-md-3"><input class="form-control usuario_co" type="text" name="usuario_psw" data-ng-model='formData.usuario_psw' data-ng-class='{ error: usuarioForm.usuario_psw.$invalid && !usuarioForm.$pristine }'>
+	<div class="col-md-3">
+	<div class="input-group">
+	<input id="pass" class="form-control usuario_co" type="password" name="usuario_psw" data-ng-model='formData.usuario_psw' data-ng-class='{ error: usuarioForm.usuario_psw.$invalid && !usuarioForm.$pristine }'>
+	<span  class="input-group-addon color_orange background_white">
+     <a href="" ng-click="mostrar_password()"><span class="glyphicon glyphicon-eye-open"></span></a> </span>
+     </div>
 	<!--<span class="red" data-ng-show="!usuarioForm.$pristine && usuarioForm.usuario_psw.$error.required">Contraseña es requiredo.</span>-->
 	</div>
 </div>
