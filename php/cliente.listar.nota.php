@@ -5,7 +5,7 @@
 
     if (isset($_POST['id_empleado'])) {
     
-	   $sql2 = "SELECT * FROM cliente WHERE id_empleado ='".$_POST['id_empleado']."'";
+	   $sql2 = "SELECT * FROM cliente WHERE id_empleado ='".$_POST['id_empleado']."' ORDER BY nombre";
 
         $result2 = mysqli_query($link,$sql2)or die(mysqli_error());
 

@@ -2,7 +2,7 @@
 	include "conexion_bd.php";
 	$link = mysqli_connect($var_host, $var_user, $var_password, $var_baseDatos);
 
-	$sql2 = "SELECT * FROM empleado WHERE cargo = '"."Vendedor"."'";
+	$sql2 = "SELECT * FROM empleado WHERE cargo = '"."Vendedor"."' ORDER BY nombre";
 
     $result2 = mysqli_query($link,$sql2)or die(mysqli_error());
 

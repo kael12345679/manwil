@@ -3401,6 +3401,7 @@ app.controller("notaReporteCtrl", function($scope, $http) {
     $scope.checkboxModelVendedorReporte = [{valor:"si"},{valor:"no"}];
     $scope.formDataNota.id_empleado = "todo";
     $scope.formDataNota.vendedor = "Todos";
+    $scope.checkboxReporteModelBaja = [{valor: "CANCELADO"},{valor:"DEBE"}];
     ////carga de vendedor para llenar nota
     $(".carga-info").css("display", "block");
     $.ajax({
@@ -3461,6 +3462,16 @@ app.controller("notaReporteCtrl", function($scope, $http) {
             /*$scope.formDataNota.id_empleado = "todo";
             $scope.formDataNota.vendedor = "Todos";
             $(".oculta_reporte_vendedor").css("display", "none");  */
+        };
+    };
+
+    /*************checkbox para dar de baja***************/
+    $scope.reporte_baja = function( a){
+        if($scope.checkboxReporteModelBaja.valor == "CANCELADO"){
+            console.log("CANCELADO"+a);//esta marcado
+        };
+        if($scope.checkboxReporteModelBaja.valor == "DEBE"){
+            console.log("DEBE"+a);//no esta marcado
         };
     };
 
