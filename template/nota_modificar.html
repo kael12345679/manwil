@@ -74,6 +74,10 @@
 	<label for=notaPedido_masa>U/M</label><br><input type="text" class="form-control notaPedido_ma focus-2" name="notaPedido_masa" ng-model='notaPedido_masa'  tabindex="2">
 	</div>
 
+	
+	<div class="col-md-2 form-group">
+	<label for=notaPedido_cantidad>Pedido</label><br><input type="text" class="form-control notaPedido_caNo" name="notaPedido_cantidadNo" ng-model='notaPedido_cantidadNo' ng-keyup="escribePrecioNo()"><input type="text" class="form-control notaPedido_caSi focus-4" name="notaPedido_cantidadSi" ng-model='notaPedido_cantidadSi' placeholder="0" ng-keyup="escribePrecioSi()"  tabindex="4">
+	</div>
 	<div class="col-md-2 form-group">
 	<label for=notaPedido_precio>Precio unidad Bs.</label><br><input type="text" class="form-control notaPedido_pr focus-3" name="notaPedido_precio" ng-model='notaPedido_precioEdit' placeholder="Escriba Precio" ng-keyup="escribePrecioSi()"  tabindex="3">
 	<select name="notaPedido_precioS" id="id_notaPedido_precioS"
@@ -82,9 +86,6 @@
     </select>
     <input type="checkbox" ng-model="checkboxModel.value2"
            ng-true-value="'si'" ng-false-value="'no'" ng-click="editarPrecio()" class="caja_base">Precio Sistema
-	</div>
-	<div class="col-md-2 form-group">
-	<label for=notaPedido_cantidad>Pedido</label><br><input type="text" class="form-control notaPedido_caNo" name="notaPedido_cantidadNo" ng-model='notaPedido_cantidadNo' ng-keyup="escribePrecioNo()"><input type="text" class="form-control notaPedido_caSi focus-4" name="notaPedido_cantidadSi" ng-model='notaPedido_cantidadSi' placeholder="0" ng-keyup="escribePrecioSi()"  tabindex="4">
 	</div>
 	<!--<div class="col-md-2 form-group">
 	<label for=notaPedido_entregado>Entregado</label><br><input type="text" class="form-control notaPedido_en" name="notaPedido_entregado" ng-model='notaPedido_entregado' disabled="disabled">
