@@ -3483,7 +3483,7 @@ app.controller("notaReporteCtrl", function($scope, $http) {
     };
 
     /*************boton para CANCELADO***************/
-    $scope.nota_cancelado = function( a){
+    $scope.nota_cancelado = function(a){
         //guardar cancelado
         $.ajax({
             // la URL para la petición
