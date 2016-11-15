@@ -18,10 +18,6 @@
 		mysqli_query($link,"INSERT INTO cliente (nombre, apellido, id_empleado, nombre_empleado)
 		VALUES ('".$nombre."','".$apellido."','".$id_em."','".$n_em."')");
 
-		
-		
-
-
 
 		$sql2 = "SELECT * FROM cliente WHERE id_empleado = '".$id_em."'";
 
