@@ -294,3 +294,9 @@ input[type="checkbox"], input[type="radio"]{
 .color_green:hover{
 	color: rgba(0, 128, 0 , 0.3);
 }
+.invisible{
+	display: none;
+}
+.cell_top_border{
+	border-top: 1px solid #ddd;
+}

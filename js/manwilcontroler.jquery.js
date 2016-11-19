@@ -59,7 +59,7 @@ $(document).ready(function(){
         , focusable
         , next
         ;
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13) {  
             focusable = form.find('input,select,button').filter(':visible');
             next = focusable.eq(focusable.index(this)+1);
             if (next.length) {

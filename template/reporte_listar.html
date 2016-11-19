@@ -69,14 +69,14 @@
 				<th class="size_cell border_1_force text-center color_orange">TOTAL POR NOTA</th>
 			</tr>
 			<tr ng-repeat="item in todo_canceldo">
-				<td class="color_orange small_cell">{{item.id}}</td>
-				<td class="small_cell">{{item.id_nota}}</td>
-				<td class="small_cell"><a href="" ng-click = "nota_cancelado(item.id_nota)"><span class="glyphicon glyphicon-remove-circle font-size-18 color_green"></span></a></td>
-           		<td class="size_cell">{{item.baja}}</td>
-				<td class="size_cell">{{item.cliente}}</td>
-				<td class="size_cell">{{item.vendedor}}</td>
-				<td class="size_cell">{{item.fecha_creacion}}</td>
-				<td class="size_cell">{{item.monto}}</td>
+				<td class="color_orange small_cell cell_top_border">{{item.id}}</td>
+				<td class="small_cell cell_top_border">{{item.id_nota}}</td>
+				<td class="small_cell cell_top_border"><a href="" ng-click = "nota_cancelado(item.id_nota)"><span class="glyphicon glyphicon-remove-circle font-size-18 color_green"></span></a></td>
+           		<td class="size_cell cell_top_border">{{item.baja}}</td>
+				<td class="size_cell cell_top_border">{{item.cliente}}</td>
+				<td class="size_cell cell_top_border">{{item.vendedor}}</td>
+				<td class="size_cell cell_top_border">{{item.fecha_creacion}}</td>
+				<td class="size_cell cell_top_border">{{item.monto}}</td>
 			</tr>
 		</table>
 

@@ -201,7 +201,7 @@ app.controller("productoAgregarCtrl", function($scope, $http) {
     $scope.producto_guardar = function() {
         $.ajax({
             // la URL para la petición
-            url : '/public_html/php/producto.agregar.php',
+            url : 'php/producto.agregar.php',
  
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -209,10 +209,11 @@ app.controller("productoAgregarCtrl", function($scope, $http) {
                 codigo : $scope.producto_codigo,
                 nombre : $scope.producto_nombre,
                 precio_sinFactura : $scope.precio_sinFactura,
-                precio_megas : $scope.precio_sinFactura,
+                precio_megas : $scope.precio_megas,
                 precio_preventista : $scope.precio_preventista,
                 precio : $scope.producto_precioFabrica,
                 observacion : $scope.producto_observacion
+
             },
  
             // especifica si será una petición POST o GET
@@ -283,12 +284,15 @@ app.controller("productoModificarCtrl", function($scope, $http) {
                 $(".precio_me").val(data[0].precio_megas);
                 $(".observacion_pro").val(data[0].observacion);
 
+
                 $scope.producto_nombre = data[0].nombre;
                 $scope.precio_sinFactura = data[0].precio_sinFactura;
                 $scope.precio_preventista = data[0].precio_preventista;
                 $scope.producto_precioFabrica = data[0].precio_fabrica;
                 $scope.producto_observacion = data[0].observacion;
                 $scope.precio_megas = data[0].precio_megas;
+
+
                 $(".carga-info").css("display", "none");
             },
  
@@ -361,6 +365,7 @@ app.controller("productoModificarCtrl", function($scope, $http) {
     };
 
 });
+
 ///////////////////------cliente--------////////////////////////////////
 /////////////////////*************--------**********/////////////////
 app.controller("clienteListarCtrl", function($scope, $http, $location) {
@@ -1057,7 +1062,7 @@ app.controller("empleadoAgregarCtrl", function($scope, $http) {
     $scope.empleado_agregar = function() {
         $.ajax({
             // la URL para la petición
-            url : '/public_html/php/empleado.agregar.php',
+            url : 'php/empleado.agregar.php',
  
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -3922,6 +3927,14 @@ app.controller("reporteListarCtrl", function($scope, $http) {
     /////////////////////////////////////////////////////////////////////      
     };
 
+
+    //funcion para imprimir reporte_imprime_nuevo
+    $scope.imprimir_reporte = function (){
+        
+        location.href = 'imprime_reporte.html';
+    };
+
+
     /////////////////////////////////////////////////////////////////////
     //**-------botón volver atrás-----***
     $scope.volver = function(){
@@ -3929,6 +3942,313 @@ app.controller("reporteListarCtrl", function($scope, $http) {
     };
 
 });
+
+//CONTROLADOR PARA LISTAR PRODUCTO DE ALMACEN
+app.controller("almacenListarCtrl", function($scope, $http) {
+    //declaracion de variables 
+    $scope.dataInventa = {};
+    //fecha
+    //var date = new Date();
+    var d = new Date();
+    $scope.fecha =  d.getDate() + " - " + d.getMonth() + " - " + d.getFullYear();
+
+    /*-----------------------------------------------------------------*/
+    ////
+    $.ajax({
+            // la URL para la petición
+            url : 'php/almacen.producto.nota.pedido.listar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { 
+                codigo: "nota_pedido_producto"
+            },
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(data) {
+                //console.log(dataUser);
+                $scope.dataInventario = data;
+                //$scope.selectedProducto = dataUser;
+                $scope.$apply();
+
+            },
+ 
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                console.log('Petición realizada');
+                //location.href='#/usuario_listar';
+            }
+        });
+    /*-----------------------------------------------------------------*/
+
+
+});
+
+//CONTROLADOR PARA AGREGAR PRODUCTO AL ALMACEN
+app.controller("almacenAgregarCtrl", function($scope, $http) {
+    //focus en donde empieza
+    $("#id_notaPedido_productoS").focus();
+    //declaracion de variables
+    $scope.formAlmacen = {};
+    //$scope.u_barra = "";
+    //$scope.u_kg = "";
+    var id_usuario_1 = sessionStorage.getItem("id_user");
+    var f1=new Date();
+    var fecha1 =f1.getFullYear() + "-" +(f1.getMonth() + 1 )+ "-" +f1.getDate();
+    $scope.a_cantidad = 0;
+    $scope.a_unidad = 0;
+    $scope.a_rango1 = 0;
+    $scope.a_rango2 = 0;
+    
+    //Convertidor de barra
+
+    ////carga de productos para llenar almacen
+    $.ajax({
+            // la URL para la petición
+            url : 'php/producto.listar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { 
+                codigo: "producto"
+            },
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dataUser) {
+                //console.log(dataUser);
+
+                $scope.datap = {
+                        availableOptionsProducto: dataUser
+                };
+                $scope.selectedProducto = dataUser;
+                $scope.$apply();
+
+            },
+ 
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+                // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                //console.log('Petición realizada');
+               //location.href='#/usuario_listar';
+            }
+        });
+    
+ 
+    ////carga de productos para llenar almacen
+    $.ajax({
+            // la URL para la petición
+            url : 'php/almacen.agregar.listar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { id_usuario: id_usuario_1, fecha: fecha1},
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dato) {
+                //console.log(dataUser);
+
+                $scope.datoAlmacenProducto = dato;
+
+                //$(".almacen_to").val(dato[0].total);
+                $scope.$apply();
+
+            },
+ 
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+                // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                //console.log('Petición realizada');
+               //location.href='#/usuario_listar';
+            }
+        });
+    /*-----------------------------------------------------------------*/
+
+    //fecha de ingresdo de almacen automatico
+    var f=new Date();
+    //document.write(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());   
+    //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
+    $(".almacen_fe").val(f.getFullYear() + "-" +(f.getMonth() + 1 )+ "-" +f.getDate());
+
+    //funcion para escoger producto y llenado de formulario para enviar.
+    $scope.hasChangedProducto = function(){
+        $scope.nombre_producto = $scope.selectedProducto.nombre;
+        $scope.formAlmacen.id_producto = $scope.selectedProducto.id_producto;
+        //console.log($scope.selectedProducto.nombre);
+        $scope.formAlmacen.nombre_producto = $scope.selectedProducto.nombre;
+        //console.log($scope.formAlmacen.nombre_producto + $scope.formAlmacen.id_producto);
+        $scope.a_cantidad = $scope.selectedProducto.cantidad;
+        $scope.a_unidad = $scope.selectedProducto.unidad;
+        $scope.a_rango1 = $scope.selectedProducto.rango_1;
+        $scope.a_rango2 = $scope.selectedProducto.rango_2;
+
+
+        //console.log($scope.formAlmacen.nombre_producto);
+        $scope.formAlmacen.descripcion = "Almacen";
+
+
+    };
+
+    //boton funcion para adicionar producto al almacen
+    $scope.agregarAlmacen = function(){
+        //////////////////////////////////////////////////////////////////////
+        //var f2=new Date();
+        //var fecha2 = f2.getHours() + ":" + f2.getMinutes() + ":" + f2.getSeconds();
+        $scope.formAlmacen.fecha = $(".almacen_fe").val();
+        $scope.formAlmacen.peso = $(".almacen_pe").val();
+        $scope.formAlmacen.id_usuario = sessionStorage.getItem("id_user");
+        $scope.formAlmacen.usuario = sessionStorage.getItem("user");
+
+        //ajax para llenado de lista de productos
+        $.ajax({
+            // la URL para la petición
+            url : 'php/almacen.agregar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : $scope.formAlmacen,
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dato) {
+                $scope.datoAlmacenProducto = dato;
+                $("#id_notaPedido_productoS").focus();
+                //$(".almacen_to").val(dato[0].total);
+                $scope.$apply();
+            },
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                console.log('Petición realizada');
+                $(".almacen_pe").val("");
+            }
+        });
+        /////////////////////////////////////////////////////////////////////    
+    };
+
+    // eliminar producto de almacen
+    $scope.almacen_eliminar = function(id_alm){
+
+        var id_us = sessionStorage.getItem("id_user");
+        var f=new Date();
+        var fec =f.getFullYear() + "-" +(f.getMonth() + 1 )+ "-" +f.getDate();
+        //ajax para mandar peticion de eliminacion de producto de almacen
+        $.ajax({
+            // la URL para la petición
+            url : 'php/almacen.eliminar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { id_almacen: id_alm , id_usuario: id_us, fecha: fec},
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dato) {
+                $scope.datoAlmacenProducto = dato;
+
+                //$(".almacen_to").val(dato[0].total);
+                $scope.$apply();
+            },
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                console.log('Petición realizada');
+            }
+        });
+        /////////////////////////////////////////////////////////////////////  
+    };
+    /////////////////////////////////////////////////////////////////////
+
+
+    //converitr de barra a kg
+    /*$scope.convertir_barra_kg = function(){
+        $scope.u_kg = Math.round10(($scope.u_barra * $scope.a_rango1), -1);
+    }
+    //converitr de kg a barra
+    $scope.convertir_kg_barra = function(){
+        if( $scope.a_rango1 <= $scope.u_kg <= $scope.a_rango2){
+            $scope.u_barra = 1;       
+        }
+        if( $scope.a_rango2 <$scope.u_kg ){
+            $scope.u_barra = Math.round10(($scope.u_kg / $scope.a_rango1), 0);
+        }
+    }*/
+
+
+    //**-------botón volver atrás-----***
+    $scope.volver = function(){
+        window.history.back();       
+    };
+
+});
+
+//CONTROLADOR PARA MODIFCAR PRODUCTO AL ALAMCEN
+app.controller("almacenModificarCtrl", function($scope, $http) {
+
+});
+
 //*******************************************************************
 //***************************************controller*******************************
 //***************************************router*******************************
@@ -3940,6 +4260,18 @@ app.config(function($routeProvider) {
     })
     .when("/main", {
         templateUrl : "template/main.html"
+    })
+    .when("/almacen_listar", {
+        templateUrl : "template/almacen_listar.html",
+        controller : "almacenListarCtrl"
+    })
+    .when("/almacen_agregar", {
+        templateUrl : "template/almacen_agregar.html",
+        controller : "almacenAgregarCtrl"
+    })
+    .when("/alamacen_modificar", {
+        templateUrl : "template/almacen_modificar.html",
+        controller : "almacenModificarCtrl"
     })
     .when("/nota_listar", {
         templateUrl : "template/nota_listar.html",

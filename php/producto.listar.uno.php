@@ -18,6 +18,7 @@ if( isset($_POST['codigo']) ) {
 		$json_grid[$cont]['precio_sinFactura'] = $row['precio_sinFactura'];
 		$json_grid[$cont]['precio_fabrica'] = $row['precio_fabrica'];
 		$json_grid[$cont]['observacion'] = $row['observacion'];
+		
         $cont++;
     }
 }
