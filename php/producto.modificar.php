@@ -11,6 +11,7 @@
 		$observacion = $_POST['observacion'];
 		$pm= $_POST['precio_megas'];
 
+
 		mysqli_query($link,"UPDATE producto SET nombre = '".$nombre."', precio_preventista = '".$pp."', precio_sinFactura = '".$psf."', precio_fabrica ='".$precio."', precio_megas = '".$pm."', observacion = '".$observacion."' WHERE id_producto = '".$codigo."'");
 
 		$var = $_POST['codigo'].', '.$_POST['nombre'].', '.$_POST['precio_preventista'].', '.$_POST['precio_sinFactura'].', '.$_POST['precio'].', '.$_POST['observacion'];

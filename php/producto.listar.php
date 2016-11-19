@@ -17,6 +17,7 @@
 		$json_grid[$cont]['precio_preventista'] = $row['precio_preventista'];
 		$json_grid[$cont]['precio_fabrica'] = $row['precio_fabrica'];
 		$json_grid[$cont]['observacion'] = $row['observacion'];
+        
 
     	//array_push($json_grid,json_encode($row));
 

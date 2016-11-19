@@ -57,6 +57,9 @@ imprimir_nota.controller('notaReporteCtrl',function($scope, $http){
                     }
                 }
                 $scope.$apply();
+
+                window.print();
+                window.history.back();
             },
             // código a ejecutar si la petición falla;
             // son pasados como argumentos a la función

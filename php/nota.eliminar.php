@@ -5,6 +5,7 @@
 	if( isset($_POST['codigo']) ) {
 
 		mysqli_query($link,"DELETE FROM nota WHERE id_nota='".$_POST['codigo']."'");
+		mysqli_query($link,"DELETE FROM nota_pedido WHERE id_nota='".$_POST['codigo']."'");
 
 	}
 	$var = "Se elimino";

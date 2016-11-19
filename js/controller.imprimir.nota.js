@@ -131,6 +131,7 @@ imprimir_nota.controller('Ctrl',function($scope, $http){
             for (var i = 0; i < dato.length; i++) {
                 $scope.cantidad =  ($scope.cantidad * 1) + (dato[i].cantidad * 1);
             }
+            $scope.cantidad =  Math.round10($scope.cantidad, -2);
             ///------divide facturas
             $scope.numero_N = $scope.items;
 
