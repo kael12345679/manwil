@@ -218,6 +218,7 @@ input[type="checkbox"], input[type="radio"]{
     text-align: center;
     width: 50px;
     z-index: 999;
+    right: 0;
 }
 #menu_nota {
     display: none;
@@ -299,4 +300,16 @@ input[type="checkbox"], input[type="radio"]{
 }
 .cell_top_border{
 	border-top: 1px solid #ddd;
+}
+.nivel_1{
+	margin-top: 10px;
+}
+.nivel_2{
+	margin-top: 76px;
+}
+.nivel_3{
+	margin-top: 142px;
+}
+.nivel_4{
+	margin-top: 208px;
 }
