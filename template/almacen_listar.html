@@ -19,9 +19,9 @@
 				<td class="text-center">{{item.n}}</td>
 				<td class="text-center">{{item.id_producto}}</td>
 				<td class="text-center">{{item.nombre_producto}}</td>
-				<td class="text-center">{{item.cantidad_entrada}} Kg.</td>
-				<td class="text-center">{{item.cantidad_salida}} Kg.</td>
-				<td class="text-center">{{item.cantidad_saldo}} Kg.</td>
+				<td class="text-center">{{item.cantidad_entrada | number:2}} Kg.</td>
+				<td class="text-center">{{item.cantidad_salida | number:2}} Kg.</td>
+				<td class="text-center">{{item.cantidad_saldo | number:2}} Kg.</td>
 			</tr>
 		</tbody>
 	</table>
