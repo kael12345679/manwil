@@ -2,7 +2,7 @@
 	include "conexion_bd.php";
 	$link = mysqli_connect($var_host, $var_user, $var_password, $var_baseDatos);
 
-	if( isset($_POST['id_nota']) ) {
+	if( isset($_POST['id_nota'] )  && $_POST['id_nota'] != "") {
 
 
 		$id_nota = (string)$_POST['id_nota'];

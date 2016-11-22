@@ -375,6 +375,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     };
 
     $scope.agregarPedidoNota = function(){
+
         $scope.notaPedidoForm.id_nota = $(".n_numero").val();
         $scope.notaPedidoForm.notaPedido_masa = $(".notaPedido_ma").val();
         //$scope.notaPedidoForm.notaPedido_entregado = $(".notaPedido_en").val();
@@ -428,6 +429,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
                     // el objeto de la petición en crudo y código de estatus de la petición
                     error : function(xhr, status) {
                         console.log('Disculpe, existió un problema');
+                        alert("Debe crear nueva nota, pulsar el boton +, o presionar F8");
                     },
 
                     // código a ejecutar sin importar si la petición falló o no
