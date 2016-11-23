@@ -21,7 +21,8 @@
   	<style type="text/css">
   		body{
   			font-size: 12px;
-  			font-family: "Times New Roman", Times, serif;
+  			/*font-family: "Times New Roman", Times, serif;*/
+        font-family: sans-serif;
   			letter-spacing: 2px;
   		}
       .letter_rellenar{
@@ -202,11 +203,11 @@
 <div class="col-md-12 text-center color_orange margin_top_20"><b>AGREGAR NOTA</b></div>
 <div class="col-md-12 text-center margin_top_20">ATAJOS : <b>F7</b> - Guardar Nota, <b>F8</b> - Nueva Nota , <b>F9</b> - Guardar e imprimir Nota</div>
 
-<button id="boton_atras" class="btn btn_super nivel_1" ng-click="add_nota()" title="Crear Nota"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+<button id="boton_add" class="btn btn_super nivel_1" ng-click="add_nota()" title="Crear Nota"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 
-<button id="boton_atras" class="btn btn_super nivel_2" ng-click="save()" title="Guardar"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+<button id="boton_save" class="btn btn_super nivel_2" ng-click="save()" title="Guardar"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
 
-<button id="boton_atras" class="btn btn_super nivel_3" ng-click="print_nota()" title="Imprimir"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
+<button id="boton_print" class="btn btn_super nivel_3" ng-click="print_nota()" title="Imprimir"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
 
 
 <button id="boton_atras" class="btn btn_afirmativo nivel_4" ng-click="volver()" title="Ir atrás"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button>

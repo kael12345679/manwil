@@ -3806,6 +3806,73 @@ app.controller("reporteListarCtrl", function($scope, $http) {
         });
         /////////////////////////////////////////////////////////////////////
 
+    ///funcion para MODIFICAR TOTAL
+    $scope.guardar_total_modificado = function(id_nota_reporte){
+        var id_nota = id_nota_reporte;
+        var id_usuario =  sessionStorage.getItem("id_user");
+        var nombre_usuario =  sessionStorage.getItem("user");
+        var total = $("#nt_"+id_nota).val();
+
+        //////////////////////////////////////////////////////////////////////
+        $.ajax({
+            // la URL para la petición
+            url : 'php/nota.reporte.listar.todo.modificar.total.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor, id_nota : id_nota , total: total, id_usuario: id_usuario, nombre_usuario: nombre_usuario},
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dato) {
+                $scope.dataReporte = dato;
+                $scope.todo_canceldo = {};
+                $scope.todo_debe = {};
+                contc = 0;
+                contd = 0;
+                $scope.total_totalesc = 0;
+                $scope.total_totalesd = 0;
+                for (var i = 0; i < dato.length; i++) {
+                    if (dato[i].baja == "CANCELADO") {
+                        $scope.todo_canceldo[contc] = dato[i];
+                        $scope.todo_canceldo[contc].id = contc+1;
+                        $scope.total_totalesc = ($scope.total_totalesc * 1) + (dato[i].monto * 1);
+                        contc++;
+                    }
+                }
+                for (var i = 0; i < dato.length; i++) {
+                    if (dato[i].baja == "DEBE") {
+                        $scope.todo_debe[contd] = dato[i];
+                        $scope.todo_debe[contd].id = contd+1;
+                        $scope.total_totalesd = ($scope.total_totalesd * 1) + (dato[i].monto * 1);
+                        contd++;
+                    }
+                }
+                $("#nt_"+id_nota).val("");
+                $scope.$apply();
+            },
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                console.log('Petición realizada');
+            }
+        });
+        /////////////////////////////////////////////////////////////////////
+    };
+
+
     ///funcion para DAR DE BAJA A LAS NOTAS
     $scope.nota_debe = function(id_nota_reporte){
 

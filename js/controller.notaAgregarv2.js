@@ -3,7 +3,7 @@ var app = angular.module('notaAgregarImprimir', ['ngRoute']);
 //CONTROLADORES
 
 app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
-    $("#focus-ini").focus();
+    $("#boton_add").focus();
 
     $("body").keyup(function(event){
         if(event.keyCode == 119){//F8
@@ -269,8 +269,8 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     };
     //********select escoger Cliente
     $scope.hasChangedCliente = function() {
-        //console.log($scope.selectedCliente.nombre);
-        //console.log($scope.selectedCliente.nombre_real +" nombre real");
+        console.log($scope.selectedCliente.nombre);
+        console.log($scope.selectedCliente.nombre_real +" nombre real");
         $scope.formDataNota.cliente = $scope.selectedCliente.nombre_real;
         $scope.formDataNota.empresa = $scope.selectedCliente.nombre_empresa;
         $scope.formDataNota.id_cliente = $scope.selectedCliente.id_cliente;
@@ -284,6 +284,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
 
     ////-----------------GUARDAR NOTA EN BASE DE DATOS------
     $scope.add_nota = function(){
+        $("#focus-ini").focus();
         $scope.formDataNota.id_usuario = sessionStorage.getItem("id_user");
         $scope.formDataNota.autorizado = sessionStorage.getItem("user");
         $scope.formDataNota.fecha_creacion = $(".n_fechaCreacion").val();
@@ -310,7 +311,8 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
                 $(".n_fechaCreacion").val(dataUser[0].fecha_creacion);
                 $scope.print_fecha_creacion =  dataUser[0].fecha_creacion;
                 $scope.print_id_nota = dataUser[0].id_nota;
-
+                $("#boton_add").removeClass("btn_super");
+                $("#boton_add").addClass("btn_agregar_positivo");
                 $scope.$apply();
             },
  
@@ -319,6 +321,8 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
             // el objeto de la petición en crudo y código de estatus de la petición
             error : function(xhr, status) {
                 console.log('Disculpe, existió un problema');
+                alert("Disculpe, existió un problema");
+                location.reload();
             },
  
             // código a ejecutar sin importar si la petición falló o no
@@ -537,7 +541,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
-            url : 'php/agregar.nuevo.cliente.php',
+            url : 'php/agregar.nuevo.cliente.v2.php',
  
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -561,61 +565,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
                 $(".crea_cliente").css("display","none");
                 console.log("aplico cambio");
                 $(".carga-info").css("display", "none");
-                //$scope.$apply();
-
-
-                /****nueva consulta de cliente****/
-                //****-------ajax pra llenar cliente ///ajax para llenar el formulario de modificar nota
-                $.ajax({
-                    // la URL para la petición
-                    url : 'php/cliente.listar.nota.php',
- 
-                    // la información a enviar
-                    // (también es posible utilizar una cadena de datos)
-                    data : { 
-                        id_empleado: id_vendedor
-                    },
- 
-                    // especifica si será una petición POST o GET
-                    type : 'POST',
- 
-                    // el tipo de información que se espera de respuesta
-                    dataType : 'json',
- 
-                    // código a ejecutar si la petición es satisfactoria;
-                    // la respuesta es pasada como argumento a la función
-                    success : function(dataUser) {
-                        //console.log(dataUser);
-                        $scope.datac = {
-                            availableOptionsCliente: dataUser
-                        };
-                        $scope.selectedCliente = dataUser;
-                        /*for(i=0; i<dataUser.length;i++){
-                            if ( dataUser[i].id_cliente == $scope.formDataNotaModificar.id_cliente) {
-                                $scope.selectedCliente = dataUser[i];
-                            };
-                        };*/
-                        $scope.$apply();
-                        $(".carga-info").css("display", "none");
-                    },
- 
-                    // código a ejecutar si la petición falla;
-                    // son pasados como argumentos a la función
-                    // el objeto de la petición en crudo y código de estatus de la petición
-                    error : function(xhr, status) {
-                        console.log('Disculpe, existió un problema');
-                    },
- 
-                    // código a ejecutar sin importar si la petición falló o no
-                    complete : function(xhr, status) {
-                        //console.log('Petición realizada');
-                        //location.href='#/usuario_listar';
-                        //var meses = new Array ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-                        //var f=new Date();
-                        //document.write(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());   
-                        //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
-                    }
-                });//fin de ajax para llenar cliente
+                $scope.$apply();
             },
  
             // código a ejecutar si la petición falla;
@@ -623,6 +573,9 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
             // el objeto de la petición en crudo y código de estatus de la petición
             error : function(xhr, status) {
                 console.log('Disculpe, existió un problema');
+                $(".carga-info").css("display", "none");
+                alert("Disculpe, existió un problema");
+                location.reload();
             },
  
             // código a ejecutar sin importar si la petición falló o no
@@ -675,9 +628,10 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
             // la respuesta es pasada como argumento a la función
             success : function(dataUser) {
                 //console.log(dataUser);
-
                 //$(".guardar_nota").css("background", "#90EE90");
                 //$(".boton_cambio").removeClass("btn_super");
+                //$(".boton_print").removeClass("btn_super");
+
                 $scope.$apply();
                 //$(".carga-info").css("display", "none");
             },
@@ -692,16 +646,58 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
                 // código a ejecutar sin importar si la petición falló o no
             complete : function(xhr, status) {
                 //console.log('Petición realizada');
-               //location.href='#/nota_listar';
+                //location.href='#/nota_listar';
+                alert("Disculpe, existió un problema");
+                location.reload();
             }
         });
 
+    };
+    ///*****------eliminar nota
+    $scope.erase_nota = function(id_borra) {
+        $.ajax({
+            // la URL para la petición
+            url : 'php/nota.eliminar.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : { codigo : id_borra },
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(data) {
+                //$scope.$apply();
+                //$(".carga-info").css("display", "none");
+            },
+ 
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+            // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+            //console.log('Petición realizada');
+                location.reload(); 
+            }
+        });
+        /////////////////////////////////////////////////////////////////////
     };
 
     ////-----------------  IMPRIMIR NOTA  ------
     $scope.print_nota = function(){
     	//preparar para guardar
     	$scope.modificar_nota();
+        $("#boton_print").removeClass("btn_super");
+        $("#boton_print").addClass("btn_agregar_positivo");
     	
     	//reload
     	setTimeout(function() {
@@ -711,8 +707,6 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
 
     	//pareparar para impresion
     	$scope.print_now();
-
-   
     };
 
     //-------   IMPRIMIR ------
@@ -724,6 +718,10 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     //salvar nota
     $scope.save = function(){
     	$scope.modificar_nota();
+        //reload
+        setTimeout(function() {
+            location.reload();
+        }, 2000);
     };
 
 });
