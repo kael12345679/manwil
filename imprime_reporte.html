@@ -172,8 +172,9 @@
 <body ng-controller="notaReporteCtrl">
 
 <div class="container">
-<h1 class="no_mostrar col-md-6 text-center color_orange tamano_super">VISTA PREVIA</h1> 
-<!--<div class="col-md-12 no_mostrar"></div>
+
+<!--<h1 class="no_mostrar col-md-6 text-center color_orange tamano_super">VISTA PREVIA</h1> 
+<div class="col-md-12 no_mostrar"></div>
 <div class="no_mostrar col-xs-12 col-md-6 text-center margin_top_bottom_10">
   <div class="col-xs-6 text-center margin_top_bottom_10"><a class="boton_imprime btn btn_afirmativo" href="javascript:window.print()"> IMPRIMIR</a></div>
   <div class="col-xs-6 text-center margin_top_bottom_10"><a class="boton_imprime btn btn_afirmativo" href="" ng-click = "volver()" >ATRÁS</a></div>
@@ -184,7 +185,7 @@
 <div id="nota_imprimir" align="center" class="" >
 <table class="table_custom">
    <tr>
-      <th class="padding_y logo_td"><img class="imagen_logo" src="img/logo.jpg"></th>
+      <th class="padding_y logo_td"></th>
    </tr>
    <tr>
      <td  class="paddin_y titulo_custom align_center negrita letter_big">EMBUTIDOS MANWIL S.R.L.</td> 
@@ -202,30 +203,6 @@
      <td><b>Vendedor: </b>{{nombre_vendedor}}</td>
    </tr>
 </table>
-<label class="margin_top_bottom_10">CANCELADO</label>
-    <table class="table_custom border_1">
-      <tr>
-        <th class="align_center border_bottom_top padding_x">Nº</th>
-        <th class="align_center border_bottom_top padding_x">NOTA</th>
-        <th class="align_center border_bottom_top padding_x">CLIENTE</th>
-        <th class="align_center border_bottom_top padding_x">AUTORIZADO</th>
-        <th class="align_center border_bottom_top padding_x">FECHA DE CREACIÓN</th>
-        <th class="align_center border_bottom_top padding_x">TOTAL POR NOTA</th>
-        <th class="align_center border_bottom_top padding_x">ESTADO</th>
-      </tr>
-      <tr ng-repeat="item in todo_canceldo">
-        <td class="align_center padding_5">{{item.id}}</td>
-        <td class="align_center padding_5">{{item.id_nota}}</td>
-        <td class="align_center padding_5">{{item.cliente}}</td>
-        <td class="align_center padding_5">{{item.autorizado}}</td>
-        <td class="align_center padding_5">{{item.fecha_creacion}}</td>
-        <td class="align_center padding_5">{{item.monto}}</td>
-        <td class="align_center padding_5">{{item.baja}}</td>
-      </tr>
-      <tr>
-        <td colspan="7" class="border_1 padding_5">TOTAL CANCELADO Bs. {{total_totalesc}}</td>
-      </tr>
-    </table>
 <label class="margin_top_bottom_10">DEBE</label>
     <table class="table_custom border_1">
       <tr>

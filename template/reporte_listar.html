@@ -76,7 +76,6 @@
 				<th class="size_cell border_1_force text-center color_orange">AUTORIZADO</th>
 				<th class="size_cell border_1_force text-center color_orange">FECHA DE CREACIÓN</th>
 				<th class="size_cell border_1_force text-center color_orange">TOTAL POR NOTA</th>
-				<th class="size_big border_1_force text-center color_white">MODIFICAR_____ <b class="color_orange">Modificar total Bs.</b></th>
 			</tr>
 			<tr ng-repeat="item in todo_canceldo">
 				<td class="color_orange small_cell cell_top_border">{{item.id}}</td>
@@ -88,11 +87,6 @@
 				<td class="size_cell">{{item.autorizado}}</td>
 				<td class="size_cell cell_top_border">{{item.fecha_creacion}}</td>
 				<td class="size_cell cell_top_border">{{item.monto}}</td>
-				<td class="size_big">
-					<div class="input-group">
-						<input id="nt_{{item.id_nota}}" class="form-control n_guardar_to " type="text" name="n_guardar_t" ng-model='n_guardar_t'><span  class="input-group-addon fusion_btn_afirmativo" ng-click="guardar_total_modificado(item.id_nota)"><span class="glyphicon glyphicon-ok"></span></span>
-     				</div>
-				</td>
 			</tr>
 		</table>
 

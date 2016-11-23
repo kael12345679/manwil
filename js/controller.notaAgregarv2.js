@@ -18,7 +18,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         }
     });
     $("body").keyup(function(event){
-        if(event.keyCode == 118){//F7
+        if(event.keyCode == 113){//F2
             $scope.save();
             return false;
         }
@@ -647,7 +647,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
             complete : function(xhr, status) {
                 //console.log('Petición realizada');
                 //location.href='#/nota_listar';
-                alert("Disculpe, existió un problema");
+                //alert("Disculpe, existió un problema");
                 location.reload();
             }
         });

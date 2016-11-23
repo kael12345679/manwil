@@ -374,3 +374,7 @@ input[type="checkbox"], input[type="radio"]{
 .color_white{
 	color: #FFFFFF;
 }
+.small_img{
+	width: 24px;
+	height: 24px;
+}

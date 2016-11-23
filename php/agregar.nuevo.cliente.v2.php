@@ -19,7 +19,7 @@
         VALUES ('".$nombre."','".$apellido."','".$id_em."','".$n_em."')");
 
 
-        $sql2 = "SELECT * FROM cliente";
+        $sql2 = "SELECT * FROM cliente ORDER BY nombre ASC";
 
         $result2 = mysqli_query($link,$sql2)or die(mysqli_error());
 
