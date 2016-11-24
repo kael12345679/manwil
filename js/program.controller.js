@@ -10,7 +10,7 @@ app.controller("productoCtrl", function($scope, $http, $location) {
         useExternalFilter: true
     };
     $scope.totalServerItems = 0;
-//dimension de json
+    //dimension de json
     //$http.get('largeLoad.json').success(function (largeLoad) {      
       //  $scope.total=largeLoad.length; 
         //console.log($scope.total);
@@ -366,7 +366,7 @@ app.controller("productoModificarCtrl", function($scope, $http) {
 
 });
 
-///////////////////------cliente--------////////////////////////////////
+//----------- CLIENTE
 /////////////////////*************--------**********/////////////////
 app.controller("clienteListarCtrl", function($scope, $http, $location) {
     $scope.datoElimina = "";
@@ -375,7 +375,7 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
         useExternalFilter: true
     };
     $scope.totalServerItems = 0;
-//dimension de json
+    //dimension de json
     //$http.get('largeLoad.json').success(function (largeLoad) {      
       //  $scope.total=largeLoad.length; 
         //console.log($scope.total);
@@ -437,7 +437,7 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
                 }
             });
 
-/////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////
               //$http.post('../php/producto.listar.php').success(function (largeLoad) {      
                   //  data = largeLoad.filter(function(item) {
                     //    return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
@@ -491,7 +491,7 @@ app.controller("clienteListarCtrl", function($scope, $http, $location) {
                      ]
 
     };
-//////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
     //modificar
     $scope.cliente_modificar = function(a){
         localStorage.setItem("id_modifica", a);
@@ -682,8 +682,6 @@ app.controller("clienteAgregarCtrl", function($scope, $http) {
 });
 
 app.controller("clienteModificarCtrl", function($scope, $http) {
-
-
     $scope.cliente_codigo = localStorage.getItem("id_modifica");
     $(".carga-info").css("display", "block");
     $.ajax({
@@ -862,11 +860,10 @@ app.controller("clienteModificarCtrl", function($scope, $http) {
     $scope.volver = function(){
         window.history.back();       
     };
-
 });
 //////////////////
 
-/////////////CONTROLADORES DE EMPLEADO******************************
+///----------- EMPLEADO
 app.controller("empleadoListarCtrl", function($scope, $http) {
     //funcionamiento de la session
     console.log(sessionStorage.getItem("activo")+ " empleado");
@@ -1242,7 +1239,7 @@ app.controller("empleadoModificarCtrl", function($scope, $http) {
 });
 /////**************************************************
 
-//////*****************usuario***************
+///----------- USUARIO
 app.controller("usuarioListarCtrl", function($scope, $http) {
     //funcionamiento de la session
     console.log(sessionStorage.getItem("activo")+ " usuario");
@@ -1419,7 +1416,6 @@ app.controller("usuarioListarCtrl", function($scope, $http) {
     };    
 });
 app.controller("usuarioAgregarCtrl", function($scope, $http) {
-
     $(".carga-info").css("display", "block");
     ////carga de empleados para llenar usuario
     $.ajax({
@@ -1464,7 +1460,7 @@ app.controller("usuarioAgregarCtrl", function($scope, $http) {
                //location.href='#/usuario_listar';
             }
         });
-////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////
     $scope.agregarUsuarioForm = function(dato){
         console.log(dato);
         ////carga de empleados para llenar usuario
@@ -1507,8 +1503,6 @@ app.controller("usuarioAgregarCtrl", function($scope, $http) {
     $scope.volver = function(){
         window.history.back();       
     };
-
-
 });
 app.controller("usuarioModificarCtrl", function($scope, $http) {
     $scope.formData = {};
@@ -1644,7 +1638,7 @@ app.controller("usuarioModificarCtrl", function($scope, $http) {
 /////*****************************************
 
 
-///************************NOTA************************/////
+///------------ NOTA
 /////LISTAR
 app.controller("notaListarCtrl", function($scope, $http) {
     //funcionamiento de la session
@@ -2577,7 +2571,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
     });
 
     
-////declarar valores por defecto
+    ////declarar valores por defecto
     $scope.notaPedido_cantidad = "";
     $scope.notaPedido_precioEdit = "";
     $scope.notaPedido_resultado = 0;
@@ -3418,242 +3412,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
 });
 //////////*********************************/////////////////////
 
-//***-----------  NOTA REPORTE  --------
-app.controller("notaReporteCtrl", function($scope, $http) {
-    $scope.dataReporte = {};
-    $scope.todo_canceldo = {};
-    $scope.todo_debe = {};
-    $scope.formDataNota= {};
-    $scope.checkboxModelVendedorReporte = [{valor:"si"},{valor:"no"}];
-    $scope.formDataNota.id_empleado = "todo";
-    $scope.formDataNota.vendedor = "Todos";
-    $scope.checkboxReporteModelBaja = [{valor: "CANCELADO"},{valor:"DEBE"}];
-    ////carga de vendedor para llenar nota
-    $(".carga-info").css("display", "block");
-    $.ajax({
-            // la URL para la petición
-            url : 'php/empleado.listar.nota.php',
- 
-            // la información a enviar
-            // (también es posible utilizar una cadena de datos)
-            data : { 
-                codigo: "vendedor"
-            },
- 
-            // especifica si será una petición POST o GET
-            type : 'POST',
- 
-            // el tipo de información que se espera de respuesta
-            dataType : 'json',
- 
-            // código a ejecutar si la petición es satisfactoria;
-            // la respuesta es pasada como argumento a la función
-            success : function(dataUser) {
-                //console.log(dataUser);
-                $scope.datav = {
-                        availableOptionsVendedor: dataUser
-                };
-                $scope.selectedVendedor = dataUser;
-                /*for(i=0; i<dataUser.length;i++){
-                    if ( dataUser[i].id_empleado == $scope.formDataNotaModificar.id_empleado) {
-                        $scope.selectedVendedor = dataUser[i];
-                    };
-                };*/
-                $scope.$apply();
-                $(".carga-info").css("display", "none");
-            },
- 
-            // código a ejecutar si la petición falla;
-            // son pasados como argumentos a la función
-            // el objeto de la petición en crudo y código de estatus de la petición
-            error : function(xhr, status) {
-                console.log('Disculpe, existió un problema');
-            },
- 
-                // código a ejecutar sin importar si la petición falló o no
-            complete : function(xhr, status) {
-                //console.log('Petición realizada');
-               //location.href='#/usuario_listar';
-            }
-        });
 
-    //********checkbox DADO DE BAJA
-    $scope.n_reporte_vendedor = function(){
-        if($scope.checkboxModelVendedorReporte.valor == "si"){
-            //console.log("si");//esta marcado
-            /*$(".oculta_reporte_vendedor").css("display", "block");*/
-        };
-        if($scope.checkboxModelVendedorReporte.valor == "no"){
-            //console.log("no");//no esta marcado
-            /*$scope.formDataNota.id_empleado = "todo";
-            $scope.formDataNota.vendedor = "Todos";
-            $(".oculta_reporte_vendedor").css("display", "none");  */
-        };
-    };
-
-    /*************boton para CANCELADO***************/
-    $scope.nota_cancelado = function(a){
-        //guardar cancelado
-        $.ajax({
-            // la URL para la petición
-            url : 'php/empleado.listar.nota.php',
- 
-            // la información a enviar
-            // (también es posible utilizar una cadena de datos)
-            data : { 
-                estado: "CANCELAR"
-            },
- 
-            // especifica si será una petición POST o GET
-            type : 'POST',
- 
-            // el tipo de información que se espera de respuesta
-            dataType : 'json',
- 
-            // código a ejecutar si la petición es satisfactoria;
-            // la respuesta es pasada como argumento a la función
-            success : function(dataUser) {
-                
-            },
- 
-            // código a ejecutar si la petición falla;
-            // son pasados como argumentos a la función
-            // el objeto de la petición en crudo y código de estatus de la petición
-            error : function(xhr, status) {
-                console.log('Disculpe, existió un problema');
-            },
- 
-            // código a ejecutar sin importar si la petición falló o no
-            complete : function(xhr, status) {
-                //console.log('Petición realizada');
-               //location.href='#/usuario_listar';
-            }
-        });
-    };
-    /*************boton para DEBE***************/
-    $scope.nota_debe = function( a){
-        
-    };
-
-    $scope.hasChangedVendedor = function() {
-        //console.log($scope.selectedVendedor.nombre);
-        $scope.formDataNota.vendedor = $scope.selectedVendedor.nombre;
-        $scope.formDataNota.id_empleado = $scope.selectedVendedor.id_empleado;
-        localStorage.setItem("id_vendedor",$scope.formDataNota.id_empleado);
-        localStorage.setItem("nombre_vendedor",$scope.formDataNota.vendedor);
-    };
-
-    $( ".date_desde" ).datepicker({
-        monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-        dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado" ],
-        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-        dateFormat: "yy-mm-dd"
-    });
-    $( ".date_hasta" ).datepicker({
-        monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-        dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado" ],
-        dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
-        dateFormat: "yy-mm-dd"
-    });
-
-    $scope.calcular_reporte = function(){
-        $scope.desde = $(".f_d").val();
-        $scope.hasta = $(".f_h").val();
-        localStorage.setItem("fecha_d",$(".f_d").val());
-        localStorage.setItem("fecha_h",$(".f_h").val());
-
-        $(".calcular_reporte_css").css("display","block");
-        //console.log($( ".f_d" ).val());
-
-        $(".carga-info").css("display", "block");
-        //---ajax para filtrar nota
-        //////////////////////////////////////////////////////////////////////
-        $.ajax({
-            // la URL para la petición
-            url : 'php/nota.reporte.listar.todo.php',
- 
-            // la información a enviar
-            // (también es posible utilizar una cadena de datos)
-            data : { desde : $scope.desde, hasta: $scope.hasta, id_empleado: $scope.formDataNota.id_empleado},
- 
-            // especifica si será una petición POST o GET
-            type : 'POST',
- 
-            // el tipo de información que se espera de respuesta
-            dataType : 'json',
- 
-            // código a ejecutar si la petición es satisfactoria;
-            // la respuesta es pasada como argumento a la función
-            success : function(dato) {
-                $scope.dataReporte = dato;
-                $scope.todo_canceldo = {};
-                $scope.todo_debe = {};
-                contc = 0;
-                contd = 0;
-                $scope.total_totalesc = 0;
-                $scope.total_totalesd = 0;
-                for (var i = 0; i < dato.length; i++) {
-                    if (dato[i].baja == "CANCELADO") {
-                        $scope.todo_canceldo[contc] = dato[i];
-                        $scope.todo_canceldo[contc].id = contc+1;
-                        $scope.total_totalesc = ($scope.total_totalesc * 1) + (dato[i].monto * 1);
-                        contc++;
-                    }
-                }
-                for (var i = 0; i < dato.length; i++) {
-                    if (dato[i].baja == "DEBE") {
-                        $scope.todo_debe[contd] = dato[i];
-                        $scope.todo_debe[contd].id = contd+1;
-                        $scope.total_totalesd = ($scope.total_totalesd * 1) + (dato[i].monto * 1);
-                        contd++;
-                    }
-                }
-                $scope.$apply();
-                $(".carga-info").css("display", "none");
-            },
-            // código a ejecutar si la petición falla;
-            // son pasados como argumentos a la función
-            // el objeto de la petición en crudo y código de estatus de la petición
-            error : function(xhr, status) {
-                console.log('Disculpe, existió un problema');
-            },
- 
-            // código a ejecutar sin importar si la petición falló o no
-            complete : function(xhr, status) {
-                console.log('Petición realizada');
-                //location.reload(); 
-                //$(".notaPedido_en").val("0");
-                //$(".notaPedido_ma").val("");
-                //$(".notaPedido_ca").val("0");
-                //$(".notaPedido_pr").val("0");
-                //$(".notaPedido_su").val("0");
-                //$(".notaPedido_suEdit").val("0");
-            }
-        });
-        /////////////////////////////////////////////////////////////////////
-    };
-
-    //----------- IMPRIMIR REPORTE en impresora matricia de la empresa ------------
-    $scope.imprimir_reporte = function (){
-        localStorage.setItem("fecha_d",$(".f_d").val());
-        localStorage.setItem("fecha_h",$(".f_h").val());
-        location.href = 'imprime_reporte.html';
-    };
-    //----------- IMPRIMIR REPORTE en impresora nueva de la empresacon tinta continua------------
-    /*$scope.imprimir_reporte = function (){
-        localStorage.setItem("fecha_d",$(".f_d").val());
-        localStorage.setItem("fecha_h",$(".f_h").val());
-        location.href = 'imprime_reporte_new.html';
-    };*/
-    /////////////////////////////////////////////////////////////////////
-    //**-------botón volver atrás-----***
-    $scope.volver = function(){
-        window.history.back();       
-    };
-});
-
-
-//***-----------  NOTA REPORTE  --------
+//***----------- REPORTE 
 app.controller("reporteAgregarCtrl", function($scope, $http) {
 
     /*********************CARGA DATA PICKER**************************/
@@ -4014,7 +3774,7 @@ app.controller("reporteListarCtrl", function($scope, $http) {
 
 });
 
-//CONTROLADOR PARA LISTAR PRODUCTO DE ALMACEN
+//-------------- ALMACEN
 app.controller("almacenListarCtrl", function($scope, $http) {
     //declaracion de variables 
     $scope.dataInventa = {};
@@ -4068,7 +3828,6 @@ app.controller("almacenListarCtrl", function($scope, $http) {
 
 });
 
-//CONTROLADOR PARA AGREGAR PRODUCTO AL ALMACEN
 app.controller("almacenAgregarCtrl", function($scope, $http) {
     //focus en donde empieza
     $("#id_notaPedido_productoS").focus();
@@ -4315,7 +4074,6 @@ app.controller("almacenAgregarCtrl", function($scope, $http) {
 
 });
 
-//CONTROLADOR PARA MODIFCAR PRODUCTO AL ALAMCEN
 app.controller("almacenModificarCtrl", function($scope, $http) {
 
 });
