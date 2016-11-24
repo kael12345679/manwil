@@ -1764,7 +1764,8 @@ app.controller("notaListarCtrl", function($scope, $http) {
                      {field:'autorizado', displayName:'AUTORIZADO', width:100}, 
                      {field:'vendedor', displayName:'VENDEDOR',width: 100},
                      {field:'fecha_creacion', displayName:'FECHA DE CREACIÓN', width:150},
-                     {field:'monto', displayName:'TOTAL', width:100}
+                     {field:'monto', displayName:'TOTAL', width:100},
+                     {field:'observacion', displayName:'OBSERVACIÓN', width:100}
                      ]
 
     };
@@ -2627,6 +2628,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 $scope.formDataNotaModificar.id_usuario = dataUser[0].id_usuario;
                 $scope.formDataNotaModificar.id_empleado = dataUser[0].id_empleado;
                 $scope.checkboxModelBaja.valor = dataUser[0].baja;
+                $scope.nota_observacion = dataUser[0].observacion;
 
                 //$scope.selectedFormaPago = $scope.dataF;
                 if ( $scope.dataF[0].valor == $scope.formDataNotaModificar.forma_pago) {
@@ -3060,6 +3062,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         $scope.formDataNota.id_nota = $(".n_numero").val();
         $scope.formDataNota.fecha_creacion = $(".n_fechaCreacion").val();
         $scope.formDataNota.monto = $(".notaPedido_to").val();
+        $scope.formDataNota.observacion = $(".n_observacion").val();
+
         //$scope.formDataNota.tc = $(".nota_cam").val();
         //$scope.formDataNota.deposito = $(".n_deposito").val();
 

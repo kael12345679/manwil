@@ -29,6 +29,7 @@
             $id_cliente = $row['id_cliente'];
         	$json_grid[$cont]['id_empleado'] = $row['id_empleado'];
         	$json_grid[$cont]['forma_pago'] = $row['forma_pago'];
+            $json_grid[$cont]['observacion'] = $row['observacion'];
 
         	//echo json_encode($json_grid[$cont]['sexo']);
         	//$cont++;

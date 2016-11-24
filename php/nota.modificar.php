@@ -17,6 +17,7 @@
 		//$dep = (string)$_POST['deposito'];
 		$tc = "";
 		$dep = "";
+		$obs = (string)$_POST['observacion'];;
 
 		$fp = $_POST['forma_pago'];
 		$id_cl = $_POST['id_cliente'];
@@ -25,7 +26,7 @@
 
 
 
-		mysqli_query($link,"UPDATE nota SET cliente = '".$cli."', empresa = '".$emp."', autorizado = '".$a."', vendedor ='".$ven."', fecha_creacion = '".$fec."', monto = '".$mon."', baja = '".$baj."', tc = '".$tc."', deposito = '".$dep."', forma_pago = '".$fp."', id_cliente = '".$id_cl."', id_usuario = '".$id_us."', id_empleado = '".$id_em."' WHERE id_nota = '".$id."'");
+		mysqli_query($link,"UPDATE nota SET cliente = '".$cli."', empresa = '".$emp."', autorizado = '".$a."', vendedor ='".$ven."', fecha_creacion = '".$fec."', monto = '".$mon."', baja = '".$baj."', tc = '".$tc."', deposito = '".$dep."', forma_pago = '".$fp."', id_cliente = '".$id_cl."', id_usuario = '".$id_us."', id_empleado = '".$id_em."', observacion = '".$obs."' WHERE id_nota = '".$id."'");
 
 		$var = $id.', '.$cli.', '.$emp.', '.$a.', '.$ven.', '.$fec.', '.$mon.', '.$baj.', '.$tc.', '.$dep.', '.$fp.', '.$id_cl.', '.$id_us.', '.$id_em;
 
