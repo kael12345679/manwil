@@ -357,6 +357,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     };
     $scope.hasChangedPrecioSelect = function(){
         $scope.notaPedido_resultado = $scope.notaPedido_cantidadNo * $scope.selectedPrecioSelect.id;
+        $scope.notaPedido_resultado = Math.round10($scope.notaPedido_resultado, -1);
         $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultado;
         $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadNo;
         $scope.notaPedidoForm.notaPedido_precio = $scope.selectedPrecioSelect.id;
@@ -364,6 +365,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     /**funcion para responder cuando NO se marco editar precio**/
     $scope.escribePrecioNo = function(){
         $scope.notaPedido_resultado = $scope.notaPedido_cantidadNo * $scope.selectedPrecioSelect.id;
+        $scope.notaPedido_resultado = Math.round10($scope.notaPedido_resultado, -1);
         $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultado;
         $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadNo;
         $scope.notaPedidoForm.notaPedido_precio = $scope.selectedPrecioSelect.id;
@@ -372,6 +374,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     /**funcion para responder cuando SI se marco editar precio**/
     $scope.escribePrecioSi = function(){
         $scope.notaPedido_resultadoEdit = $scope.notaPedido_cantidadSi * $scope.notaPedido_precioEdit;
+        $scope.notaPedido_resultadoEdit = Math.round10($scope.notaPedido_resultadoEdit, -1);
         $scope.notaPedidoForm.notaPedido_subtotal = $scope.notaPedido_resultadoEdit;
         $scope.notaPedidoForm.notaPedido_cantidad = $scope.notaPedido_cantidadSi;
         $scope.notaPedidoForm.notaPedido_precio = $scope.notaPedido_precioEdit;

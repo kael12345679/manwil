@@ -12,7 +12,8 @@
 		$pedido = (string)$_POST['notaPedido_cantidad'];
 		$entregado = (string)$_POST['notaPedido_entregado'];
 		$pu = (string)$_POST['notaPedido_precio'];
-		$subtotal = (string)$_POST['notaPedido_subtotal'];
+		$subtotal = $_POST['notaPedido_subtotal'];
+		$subtotal = round($subtotal, 1);
 
 		mysqli_query($link,"INSERT INTO nota_pedido (id_nota, id_producto, cantidad, entregado, masa, precio, subtotal, nombre)
 		VALUES ('".$id_nota."','".$id_producto."','".$pedido."','".$entregado."','".$um."','".$pu."','".$subtotal."','".$nombre."')");
@@ -31,7 +32,7 @@
     	while($row = mysqli_fetch_array($result2)) {
 
     		$total = $total + round($row['subtotal'], 1);
-    		$print_cantidad = $print_cantidad + round($row['cantidad'], 1);
+    		$print_cantidad = $print_cantidad + round($row['cantidad'], 2);
 			$json_grid[$cont]['id_nota'] = $row['id_nota'];
 			$json_grid[$cont]['id_producto'] = $row['id_producto'];    	
         	$json_grid[$cont]['cantidad'] = $row['cantidad'];       
