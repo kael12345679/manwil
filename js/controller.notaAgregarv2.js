@@ -5,21 +5,50 @@ var app = angular.module('notaAgregarImprimir', ['ngRoute']);
 app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     $("#boton_add").focus();
 
+    //activar los controles de botones en pantalla
+    localStorage.setItem("add", "1");
+    localStorage.setItem("save", "0");
+    localStorage.setItem("print", "0");
+    $("#boton_add").prop("disabled","");
+    $("#boton_save").prop("disabled","disabled");
+    $("#boton_print").prop("disabled","disabled");
+
+    //ATAJO F8 CREAR NOTA
     $("body").keyup(function(event){
-        if(event.keyCode == 119){//F8
+        if(event.keyCode == 119 && localStorage.getItem("add") === "1"){//F8
             $scope.add_nota();
+            localStorage.setItem("add", "0");
+            localStorage.setItem("save", "1");
+            localStorage.setItem("print", "1");
+            $("#boton_add").prop("disabled","disabled");
+            $("#boton_save").prop("disabled","");
+            $("#boton_print").prop("disabled","");
             return false;
         }
     });
+    //ATAJO F9 IMPRIMIR Y GUARDAR NOTA
     $("body").keyup(function(event){
-        if(event.keyCode == 120){//F9
+        if(event.keyCode == 120 && localStorage.getItem("print") === "1"){//F9  
             $scope.print_nota();
+            localStorage.setItem("add", "1");
+            localStorage.setItem("save", "0");
+            localStorage.setItem("print", "0");
+            $("#boton_add").prop("disabled","");
+            $("#boton_save").prop("disabled","disabled");
+            $("#boton_print").prop("disabled","disabled");
             return false;
         }
     });
+    //ATAJO F2 GUARDAR NOTA
     $("body").keyup(function(event){
-        if(event.keyCode == 113){//F2
-            $scope.save();
+        if(event.keyCode == 113  && localStorage.getItem("save") === "1"){//F2
+            $scope.save_nota();
+            localStorage.setItem("add", "1");
+            localStorage.setItem("save", "0");
+            localStorage.setItem("print", "0");
+            $("#boton_add").prop("disabled","");
+            $("#boton_save").prop("disabled","disabled");
+            $("#boton_print").prop("disabled","disabled");
             return false;
         }
     });
@@ -36,9 +65,11 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     $scope.checkboxModel = [{value2: "si"},{value2: "no"}];
 
 
-    $scope.dataF = [{valor: "contado",nombre: "CONTADO"},{valor: "credito",nombre: "CREDITO" }];
-    $scope.selectedFormaPago = $scope.dataF;            
 
+
+    $scope.dataF = [{valor: "contado",nombre: "CONTADO"},{valor: "credito",nombre: "CREDITO" }];
+    $scope.selectedFormaPago = $scope.dataF;  
+    
 
     ////carga de vendedor para llenar nota
     $.ajax({
@@ -83,13 +114,13 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         complete : function(xhr, status) {
             //console.log('Petición realizada');
             //location.href='#/usuario_listar';
-            var meses = new Array ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
-            var f=new Date();
+            //var meses = new Array ("ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE");
+            //var f=new Date();
             //document.write(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());   
             //$(".n_fechaCreacion").val(f.getDate() + " - " + meses[f.getMonth()] + " - " + f.getFullYear());
-            $(".n_fechaCreacion").val(f.getFullYear() + "-" +(f.getMonth() + 1 )+ "-" +f.getDate());
-            $(".notaPedido_ma").val("Kg.");
-            $scope.fecha_creacion = $(".n_fechaCreacion").val();
+            //$(".n_fechaCreacion").val(f.getFullYear() + "-" +(f.getMonth() + 1 )+ "-" +f.getDate());
+            
+            //$scope.fecha_creacion = $(".n_fechaCreacion").val();
             //$(".nota_cam").val("6.97");
         }
     });
@@ -285,6 +316,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     ////-----------------GUARDAR NOTA EN BASE DE DATOS------
     $scope.add_nota = function(){
         $("#focus-ini").focus();
+        $scope.made_fecha();
         $scope.formDataNota.id_usuario = sessionStorage.getItem("id_user");
         $scope.formDataNota.autorizado = sessionStorage.getItem("user");
         $scope.formDataNota.fecha_creacion = $(".n_fechaCreacion").val();
@@ -596,6 +628,15 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         /////////////////////////////////////////////////////////////////////
     };
 
+
+    /**-- cargar fecha -*/
+
+    $scope.made_fecha = function(){
+        var f=new Date();
+        $(".n_fechaCreacion").val(f.getFullYear() + "-" +(f.getMonth() + 1 )+ "-" +f.getDate());
+        $scope.fecha_creacion = $(".n_fechaCreacion").val();    
+        $(".notaPedido_ma").val("Kg.");
+    };  
     //**-------botón volver atrás-----***
     $scope.volver = function(){
         window.history.back();       
@@ -615,7 +656,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         ////
         $.ajax({
             // la URL para la petición
-            url : 'php/nota.modificar.php',
+            url : 'php/nota.modificar.v2.php',
  
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
@@ -651,7 +692,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
                 //console.log('Petición realizada');
                 //location.href='#/nota_listar';
                 //alert("Disculpe, existió un problema");
-                location.reload();
+                //location.reload();
             }
         });
 
@@ -688,7 +729,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
  
             // código a ejecutar sin importar si la petición falló o no
             complete : function(xhr, status) {
-            //console.log('Petición realizada');
+                //console.log('Petición realizada');
                 location.reload(); 
             }
         });
@@ -719,12 +760,45 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
 
 
     //salvar nota
-    $scope.save = function(){
+    $scope.save_nota = function(){
     	$scope.modificar_nota();
         //reload
         setTimeout(function() {
             location.reload();
-        }, 2000);
+        }, 1000);
     };
 
+
+    ///controles para desd bones
+    // add
+    $scope.btn_add_nota = function(){
+        localStorage.setItem("add", "0");
+        localStorage.setItem("save", "1");
+        localStorage.setItem("print", "1");
+        $("#boton_add").prop("disabled","disabled");
+        $("#boton_save").prop("disabled","");
+        $("#boton_print").prop("disabled","");
+        $scope.add_nota();
+    };
+    // save
+    $scope.btn_save_nota = function(){
+        localStorage.setItem("add", "1");
+        localStorage.setItem("save", "0");
+        localStorage.setItem("print", "0");
+        $("#boton_add").prop("disabled","");
+        $("#boton_save").prop("disabled","disabled");
+        $("#boton_print").prop("disabled","disabled");
+        $scope.save_nota();
+    };
+    // print
+    $scope.btn_print_nota = function(){
+        localStorage.setItem("add", "1");
+        localStorage.setItem("save", "0");
+        localStorage.setItem("print", "0");
+        $("#boton_add").prop("disabled","");
+        $("#boton_save").prop("disabled","disabled");
+        $("#boton_print").prop("disabled","disabled");
+        $scope.print_nota();
+    };
+    
 });

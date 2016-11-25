@@ -17,7 +17,7 @@
 		//$dep = (string)$_POST['deposito'];
 		$tc = "";
 		$dep = "";
-		$obs = (string)$_POST['observacion'];
+		$obs = "";
 
 		$fp = $_POST['forma_pago'];
 		$id_cl = $_POST['id_cliente'];
