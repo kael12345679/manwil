@@ -654,6 +654,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         //$(".carga-info").css("display", "block");
         //**********enviar para agregar*****/
         ////
+        //$(".carga-info").css("display", "block");
         $.ajax({
             // la URL para la petición
             url : 'php/nota.modificar.v2.php',
@@ -675,8 +676,68 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
                 //$(".guardar_nota").css("background", "#90EE90");
                 //$(".boton_cambio").removeClass("btn_super");
                 //$(".boton_print").removeClass("btn_super");
-
+                //$(".carga-info").css("display", "none");
                 $scope.$apply();
+                //$(".carga-info").css("display", "none");
+            },
+ 
+            // código a ejecutar si la petición falla;
+            // son pasados como argumentos a la función
+            // el objeto de la petición en crudo y código de estatus de la petición
+            error : function(xhr, status) {
+                console.log('Disculpe, existió un problema');
+            },
+ 
+                // código a ejecutar sin importar si la petición falló o no
+            complete : function(xhr, status) {
+                //console.log('Petición realizada');
+                //location.href='#/nota_listar';
+                //alert("Disculpe, existió un problema");
+                //location.reload();
+            }
+        });
+
+    };
+    ////-----------------GUARDAR NOTA EN BASE DE DATOS------
+    $scope.modificar_nota_save = function(){
+        $scope.formDataNota.id_usuario = sessionStorage.getItem("id_user");
+        $scope.formDataNota.autorizado = sessionStorage.getItem("user");
+        $scope.formDataNota.id_nota = $(".n_numero").val();
+        $scope.formDataNota.fecha_creacion = $(".n_fechaCreacion").val();
+        $scope.formDataNota.monto = $(".notaPedido_to").val();
+        //$scope.formDataNota.tc = $(".nota_cam").val();
+        //$scope.formDataNota.deposito = $(".n_deposito").val();
+
+        //$(".carga-info").css("display", "block");
+        //**********enviar para agregar*****/
+        ////
+        $(".carga-info").css("display", "block");
+        $.ajax({
+            // la URL para la petición
+            url : 'php/nota.modificar.v2.php',
+ 
+            // la información a enviar
+            // (también es posible utilizar una cadena de datos)
+            data : $scope.formDataNota,
+ 
+            // especifica si será una petición POST o GET
+            type : 'POST',
+ 
+            // el tipo de información que se espera de respuesta
+            dataType : 'json',
+ 
+            // código a ejecutar si la petición es satisfactoria;
+            // la respuesta es pasada como argumento a la función
+            success : function(dataUser) {
+                //console.log(dataUser);
+                //$(".guardar_nota").css("background", "#90EE90");
+                //$(".boton_cambio").removeClass("btn_super");
+                //$(".boton_print").removeClass("btn_super");
+                $(".carga-info").css("display", "none");
+                setTimeout(function() {
+                    location.reload();
+                }, 500);
+                //$scope.$apply();
                 //$(".carga-info").css("display", "none");
             },
  
@@ -761,11 +822,11 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
 
     //salvar nota
     $scope.save_nota = function(){
-    	$scope.modificar_nota();
+    	$scope.modificar_nota_save();
         //reload
-        setTimeout(function() {
+        /*setTimeout(function() {
             location.reload();
-        }, 1000);
+        }, 2000);*/
     };
 
 

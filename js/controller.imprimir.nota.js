@@ -138,8 +138,10 @@ imprimir_nota.controller('Ctrl',function($scope, $http){
 
             $scope.$apply();
             /*verifica las salidas*/
+            setTimeout(function() {
+                window.history.back();
+            }, 2000);
             window.print();
-            window.history.back();
 
         },
  

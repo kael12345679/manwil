@@ -5,6 +5,6 @@
     $var_host = "localhost";
     $var_user = "root";
     $var_password = "";
-    $var_baseDatos = "manwil_db";
+    $var_baseDatos = "manwil_db_test";
 
 ?>
