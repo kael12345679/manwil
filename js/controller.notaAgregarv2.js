@@ -43,12 +43,6 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     $("body").keyup(function(event){
         if(event.keyCode == 113  && localStorage.getItem("save") === "1"){//F2
             $scope.save_nota();
-            localStorage.setItem("add", "1");
-            localStorage.setItem("save", "0");
-            localStorage.setItem("print", "0");
-            $("#boton_add").prop("disabled","");
-            $("#boton_save").prop("disabled","disabled");
-            $("#boton_print").prop("disabled","disabled");
             return false;
         }
     });
@@ -843,12 +837,12 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
     };
     // save
     $scope.btn_save_nota = function(){
-        localStorage.setItem("add", "1");
+        /*localStorage.setItem("add", "1");
         localStorage.setItem("save", "0");
         localStorage.setItem("print", "0");
         $("#boton_add").prop("disabled","");
         $("#boton_save").prop("disabled","disabled");
-        $("#boton_print").prop("disabled","disabled");
+        $("#boton_print").prop("disabled","disabled");*/
         $scope.save_nota();
     };
     // print
