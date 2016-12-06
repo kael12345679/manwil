@@ -275,7 +275,7 @@ input[type="checkbox"], input[type="radio"]{
 	display: none;
 }
 .altura-tabla{
-	height: 300px;
+	height: 100%;
 }
 .small_cell{
 	width: 20px;
