@@ -19,6 +19,7 @@
 		$json_grid[$cont]['monto'] = $row['monto'];
         $json_grid[$cont]['baja'] = $row['baja'];
         $json_grid[$cont]['observacion'] = $row['observacion'];
+        $json_grid[$cont]['id_nota_papel'] = $row['id_nota_papel'];
         //$json_grid[$cont]['tc'] = $row['tc'];
         //$json_grid[$cont]['deposito'] = $row['deposito'];
         $json_grid[$cont]['tc'] = "";

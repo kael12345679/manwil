@@ -61,6 +61,7 @@
 			<tr ng-repeat="item in todo_canceldo">
 				<td class="color_orange">{{item.id}}</td>
 				<td>{{item.id_nota}}</td>
+				<td>{{item.id_nota_papel}}</td>
 				<td><a href="" ng-click = "nota_cancelado(item.id_nota)"><span class="glyphicon glyphicon-transfer"></span></a></td>
            		<td>{{item.baja}}</td>
 				<td>{{item.cliente}}</td>
@@ -94,6 +95,7 @@
 			<tr ng-repeat="item in todo_debe">
 				<td class="color_orange">{{item.id}}</td>
 				<td>{{item.id_nota}}</td>
+				<td>{{item.id_nota_papel}}</td>
 				<td><a href="" ng-click = "nota_debe(item.id_nota)"><span class="glyphicon glyphicon-transfer"></span></a></td>
 				<td>{{item.baja}}</td>
 				<td>{{item.cliente}}</td>

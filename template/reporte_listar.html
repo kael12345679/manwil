@@ -32,7 +32,8 @@
 		<table class="table">
 			<tr>
 				<th class="small_cell border_1_force text-center color_orange">Nº Fila</th>
-				<th class="small_cell border_1_force text-center color_orange">NOTA</th>
+				<th class="small_cell border_1_force text-center color_orange">NOTA SISTEMA</th>
+				<th class="small_cell border_1_force text-center color_orange">NOTA PAPEL</th>
 				<th class="small_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">CLIENTE</th>
@@ -45,6 +46,7 @@
 			<tr ng-repeat="item in todo_debe">
 				<td class="color_orange small_cell">{{item.id}}</td>
 				<td class="small_cell">{{item.id_nota}}</td>
+				<td class="small_cell cell_top_border color_blue">{{item.id_nota_papel}}</td>
 				<td class="small_cell"><a href="" ng-click = "nota_debe(item.id_nota)"><span class="glyphicon glyphicon-ok-circle font-size-18 color_red"></span></a></td>
 				<td class="size_cell">{{item.baja}}</td>
 				<td class="size_cell">{{item.cliente}}</td>
@@ -68,7 +70,8 @@
 		<table class="table">
 			<tr>
 				<th class="small_cell border_1_force text-center color_orange">Nº Fila</th>
-				<th class="small_cell border_1_force text-center color_orange">NOTA</th>
+				<th class="small_cell border_1_force text-center color_orange">NOTA SISTEMA</th>
+				<th class="small_cell border_1_force text-center color_orange">NOTA PAPEL</th>
 				<th class="small_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">CLIENTE</th>
@@ -80,6 +83,7 @@
 			<tr ng-repeat="item in todo_canceldo">
 				<td class="color_orange small_cell cell_top_border">{{item.id}}</td>
 				<td class="small_cell cell_top_border">{{item.id_nota}}</td>
+				<td class="small_cell cell_top_border color_blue">{{item.id_nota_papel}}</td>
 				<td class="small_cell cell_top_border"><a href="" ng-click = "nota_cancelado(item.id_nota)"><span class="glyphicon glyphicon-remove-circle font-size-18 color_green"></span></a></td>
            		<td class="size_cell cell_top_border">{{item.baja}}</td>
 				<td class="size_cell cell_top_border">{{item.cliente}}</td>

@@ -642,6 +642,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         $scope.formDataNota.id_nota = $(".n_numero").val();
         $scope.formDataNota.fecha_creacion = $(".n_fechaCreacion").val();
         $scope.formDataNota.monto = $(".notaPedido_to").val();
+        $scope.formDataNota.id_nota_papel = $(".id_nota_p").val();
         //$scope.formDataNota.tc = $(".nota_cam").val();
         //$scope.formDataNota.deposito = $(".n_deposito").val();
 
@@ -699,6 +700,7 @@ app.controller("notaAgregarImprimirCtrl", function($scope, $http) {
         $scope.formDataNota.id_nota = $(".n_numero").val();
         $scope.formDataNota.fecha_creacion = $(".n_fechaCreacion").val();
         $scope.formDataNota.monto = $(".notaPedido_to").val();
+        $scope.formDataNota.id_nota_papel = $(".id_nota_p").val();
         //$scope.formDataNota.tc = $(".nota_cam").val();
         //$scope.formDataNota.deposito = $(".n_deposito").val();
 

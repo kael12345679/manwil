@@ -1759,6 +1759,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
                      {field:'vendedor', displayName:'VENDEDOR',width: 100},
                      {field:'fecha_creacion', displayName:'FECHA DE CREACIÓN', width:150},
                      {field:'monto', displayName:'TOTAL', width:100},
+                     {field: 'id_nota_papel', displayName: 'Nº NOTA MANUAL', width: 120},
                      {field:'observacion', displayName:'OBSERVACIÓN', width:100}
                      ]
 
@@ -2616,6 +2617,8 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 //$(".n_deposito").val(dataUser[0].deposito); // deposito de nota
                 //$(".nota_cam").val(dataUser[0].tc); // cifra de cambio de moneda nacional a doal americano
                 $(".notaPedido_ma").val("Kg.");
+                $(".n_observacion ").val(dataUser[0].observacion);
+                $(".id_nota_p").val(dataUser[0].id_nota_papel);
 
                 $scope.formDataNotaModificar.forma_pago = dataUser[0].forma_pago;
                 $scope.formDataNotaModificar.id_cliente = dataUser[0].id_cliente;
@@ -2623,6 +2626,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
                 $scope.formDataNotaModificar.id_empleado = dataUser[0].id_empleado;
                 $scope.checkboxModelBaja.valor = dataUser[0].baja;
                 $scope.nota_observacion = dataUser[0].observacion;
+                $scope.id_nota_papel = dataUser[0].id_nota_papel;
 
                 //$scope.selectedFormaPago = $scope.dataF;
                 if ( $scope.dataF[0].valor == $scope.formDataNotaModificar.forma_pago) {
@@ -3057,6 +3061,7 @@ app.controller("notaModificarCtrl", function($scope, $http) {
         $scope.formDataNota.fecha_creacion = $(".n_fechaCreacion").val();
         $scope.formDataNota.monto = $(".notaPedido_to").val();
         $scope.formDataNota.observacion = $(".n_observacion").val();
+        $scope.formDataNota.id_nota_papel =$(".id_nota_p").val();
 
         //$scope.formDataNota.tc = $(".nota_cam").val();
         //$scope.formDataNota.deposito = $(".n_deposito").val();
