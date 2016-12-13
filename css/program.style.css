@@ -301,6 +301,9 @@ input[type="checkbox"], input[type="radio"]{
 .cell_top_border{
 	border-top: 1px solid #ddd;
 }
+.nivel_0{
+	margin-top: -56px;
+}
 .nivel_1{
 	margin-top: 10px;
 }
