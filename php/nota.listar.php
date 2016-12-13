@@ -16,6 +16,7 @@
         $json_grid[$cont]['autorizado'] = $row['autorizado'];       
 		$json_grid[$cont]['vendedor']= $row['vendedor'];
 		$json_grid[$cont]['fecha_creacion'] = $row['fecha_creacion'];
+        $json_grid[$cont]['fecha_baja'] = $row['fecha_baja'];
 		$json_grid[$cont]['monto'] = $row['monto'];
         $json_grid[$cont]['baja'] = $row['baja'];
         $json_grid[$cont]['observacion'] = $row['observacion'];

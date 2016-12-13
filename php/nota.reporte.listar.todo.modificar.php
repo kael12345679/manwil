@@ -6,7 +6,7 @@
         
         
 
-        mysqli_query($link,"UPDATE nota SET  baja ='".$_POST['baja']."' WHERE id_nota = '".$_POST['id_nota']."'");
+        mysqli_query($link,"UPDATE nota SET  baja ='".$_POST['baja']."', autorizado ='".$_POST['autorizado']."', id_usuario ='".$_POST['id_usuario']."', fecha_baja = '".$_POST['fecha_baja']."' WHERE id_nota = '".$_POST['id_nota']."'");
         $var = "modificado";
 
 
@@ -41,6 +41,7 @@
             //$json_grid[$cont]['deposito'] = $row['deposito'];
             $json_grid[$cont]['tc'] = "";
             $json_grid[$cont]['deposito'] = "";
+            $json_grid[$cont]['fecha_baja'] = $row['fecha_baja'];
 
             //echo json_encode($json_grid[$cont]['sexo']);
             $cont++;

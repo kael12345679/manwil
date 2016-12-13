@@ -37,7 +37,6 @@
 				<th class="small_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">CLIENTE</th>
-				<th class="size_cell border_1_force text-center color_orange">VENDEDOR</th>
 				<th class="size_cell border_1_force text-center color_orange">AUTORIZADO</th>
 				<th class="size_cell border_1_force text-center color_orange">FECHA DE CREACIÓN</th>
 				<th class="size_cell border_1_force text-center color_orange">TOTAL POR NOTA Bs.</th>
@@ -50,7 +49,6 @@
 				<td class="small_cell"><a href="" ng-click = "nota_debe(item.id_nota)"><span class="glyphicon glyphicon-ok-circle font-size-18 color_red"></span></a></td>
 				<td class="size_cell">{{item.baja}}</td>
 				<td class="size_cell">{{item.cliente}}</td>
-				<td class="size_cell">{{item.vendedor}}</td>
 				<td class="size_cell">{{item.autorizado}}</td>
 				<td class="size_cell">{{item.fecha_creacion}}</td>
 				<td class="size_cell">{{item.monto}}</td>
@@ -75,9 +73,9 @@
 				<th class="small_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">ESTADO</th>
 				<th class="size_cell border_1_force text-center color_orange">CLIENTE</th>
-				<th class="size_cell border_1_force text-center color_orange">VENDEDOR</th>
-				<th class="size_cell border_1_force text-center color_orange">AUTORIZADO</th>
+				<th class="size_cell border_1_force text-center color_orange">AUTORIZADO BAJA</th>
 				<th class="size_cell border_1_force text-center color_orange">FECHA DE CREACIÓN</th>
+				<th class="size_cell border_1_force text-center color_orange">FECHA DE BAJA</th>
 				<th class="size_cell border_1_force text-center color_orange">TOTAL POR NOTA</th>
 			</tr>
 			<tr ng-repeat="item in todo_canceldo">
@@ -87,9 +85,9 @@
 				<td class="small_cell cell_top_border"><a href="" ng-click = "nota_cancelado(item.id_nota)"><span class="glyphicon glyphicon-remove-circle font-size-18 color_green"></span></a></td>
            		<td class="size_cell cell_top_border">{{item.baja}}</td>
 				<td class="size_cell cell_top_border">{{item.cliente}}</td>
-				<td class="size_cell cell_top_border">{{item.vendedor}}</td>
 				<td class="size_cell">{{item.autorizado}}</td>
 				<td class="size_cell cell_top_border">{{item.fecha_creacion}}</td>
+				<td class="size_cell cell_top_border">{{item.fecha_baja}}</td>
 				<td class="size_cell cell_top_border">{{item.monto}}</td>
 			</tr>
 		</table>

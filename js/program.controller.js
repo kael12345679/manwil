@@ -1758,6 +1758,7 @@ app.controller("notaListarCtrl", function($scope, $http) {
                      {field:'autorizado', displayName:'AUTORIZADO', width:100}, 
                      {field:'vendedor', displayName:'VENDEDOR',width: 100},
                      {field:'fecha_creacion', displayName:'FECHA DE CREACIÓN', width:150},
+                     {field:'fecha_baja', displayName:'FECHA DE BAJA', width:150},
                      {field:'monto', displayName:'TOTAL', width:100},
                      {field: 'id_nota_papel', displayName: 'Nº NOTA MANUAL', width: 120},
                      {field:'observacion', displayName:'OBSERVACIÓN', width:100}
@@ -3644,7 +3645,11 @@ app.controller("reporteListarCtrl", function($scope, $http) {
 
     ///funcion para DAR DE BAJA A LAS NOTAS
     $scope.nota_debe = function(id_nota_reporte){
+        var id_usuario = sessionStorage.getItem("id_user");
+        var nombre_usuario = sessionStorage.getItem("user");
 
+        var d = new Date();
+        var fecha_baja =  d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
         //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -3652,7 +3657,7 @@ app.controller("reporteListarCtrl", function($scope, $http) {
  
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
-            data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor, id_nota : id_nota_reporte , baja: "CANCELADO"},
+            data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor, id_nota : id_nota_reporte , baja: "CANCELADO", autorizado: nombre_usuario, id_usuario: id_usuario, fecha_baja: fecha_baja},
  
             // especifica si será una petición POST o GET
             type : 'POST',
@@ -3705,6 +3710,10 @@ app.controller("reporteListarCtrl", function($scope, $http) {
 
     ///funcion para DAR DE BAJA A LAS NOTAS
     $scope.nota_cancelado = function(id_nota_reporte){
+        var id_usuario = sessionStorage.getItem("id_user");
+        var nombre_usuario = sessionStorage.getItem("user");
+
+        var fecha_baja =  null;
       //////////////////////////////////////////////////////////////////////
         $.ajax({
             // la URL para la petición
@@ -3712,7 +3721,7 @@ app.controller("reporteListarCtrl", function($scope, $http) {
  
             // la información a enviar
             // (también es posible utilizar una cadena de datos)
-            data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor, id_nota : id_nota_reporte , baja: "DEBE"},
+            data : { desde : $scope.reporte_fecha_desde, hasta: $scope.reporte_fecha_hasta, id_empleado: $scope.reporte_id_vendedor, id_nota : id_nota_reporte , baja: "DEBE", autorizado: nombre_usuario, id_usuario: id_usuario, fecha_baja: fecha_baja},
  
             // especifica si será una petición POST o GET
             type : 'POST',
