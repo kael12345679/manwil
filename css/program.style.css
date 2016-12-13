@@ -302,7 +302,7 @@ input[type="checkbox"], input[type="radio"]{
 	border-top: 1px solid #ddd;
 }
 .nivel_0{
-	margin-top: -56px;
+	margin-top: -35px;
 }
 .nivel_1{
 	margin-top: 10px;
@@ -380,4 +380,7 @@ input[type="checkbox"], input[type="radio"]{
 .small_img{
 	width: 24px;
 	height: 24px;
+}
+#boton_menuEs{
+	display: none;
 }
