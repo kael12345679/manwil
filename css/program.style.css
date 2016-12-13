@@ -378,3 +378,9 @@ input[type="checkbox"], input[type="radio"]{
 	width: 24px;
 	height: 24px;
 }
+.hover_red:hover{
+	background: rgba(255, 0, 0, 0.3);
+}
+.hover_green:hover{
+	background: rgba(0, 128, 0,0.3);
+}	
