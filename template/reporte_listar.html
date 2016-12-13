@@ -1,5 +1,6 @@
 <div >
-<div class="col-md-12 text-right"><button id="boton_atras" class="btn btn_afirmativo" ng-click="volver()" title="Ir atrás"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button></div>
+<button id="boton_atras" class="btn btn_afirmativo nivel_1" ng-click="volver()" title="Ir atrás"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button>
+<button id="boton_print" class="btn btn_super nivel_2" ng-click="imprimir_reporte()" title="Imprimir Debe"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></button>
 <div class="col-md-12 text-center color_orange margin_10">REPORTE NOTA</div>
 <div class="col-md-12">
 		<div class="col-md-4 margin_10">
@@ -28,6 +29,7 @@
 	<div class="col-md-12">
 		<label class="ficha_debe margin_10 col-md-12">DEBE TOTAL Bs. {{total_totalesd}}</label>
 	</div>
+	<div class="col-md-12">
 	<div class="col-md-12 table-responsive text-center altura-tabla">
 		<table class="table">
 			<tr>
@@ -60,10 +62,12 @@
 			</tr>
 		</table>
 	</div>
+	</div>
 </div>
 
 <div class="col-md-6 col-xs-12">
 	<div class="col-md-12"><label class="ficha_cancelado margin_10 col-md-12">CANCELADO TOTAL Bs. {{total_totalesc}}</label></div>
+	<div class="col-md-12">
 	<div class="col-md-12 table-responsive text-center altura-tabla">
 		<table class="table">
 			<tr>
@@ -93,10 +97,11 @@
 		</table>
 
 	</div>
+	</div>	
 </div>
 <div class="col-md-12 margin_10 border_1"></div>
 
-<div class="col-md-12">
+<!--<div class="col-md-12">
 	<div class="col-md-12 text-center margin_10"><button  class="btn btn_afirmativo" title="Imprimir reporte" ng_click="imprimir_reporte()">IMPRIMIR</button></div>
-</div>
+</div>-->
 </div>

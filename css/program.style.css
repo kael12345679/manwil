@@ -301,6 +301,9 @@ input[type="checkbox"], input[type="radio"]{
 .cell_top_border{
 	border-top: 1px solid #ddd;
 }
+.nivel_0{
+	margin-top: -35px;
+}
 .nivel_1{
 	margin-top: 10px;
 }
@@ -384,3 +387,6 @@ input[type="checkbox"], input[type="radio"]{
 .hover_green:hover{
 	background: rgba(0, 128, 0,0.3);
 }	
+#boton_menuEs{
+	display: none;
+}
